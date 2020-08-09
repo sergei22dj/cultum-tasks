@@ -1,16 +1,6 @@
 {
   "presets": ["next/babel"],
   "plugins": [
-    [
-      "module-resolver",
-      {
-        "root": ["./"],
-        "alias": {
-          "@md-modules": "./modules",
-          "@md-styles": "./modules/shared/styles"
-        }
-      }
-    ],
     ["styled-components", { "ssr": true }],
     [
       "inline-react-svg",

@@ -8,6 +8,8 @@ const Title = styled.h1`
 `;
 
 const Home = () => {
+  // console.log(process.env.ANALYTICS_ID) for server side
+  // console.log(process.env.NEXT_PUBLIC_ANALYTICS_ID) for client side
   return (
     <div className={styles.container}>
       <main className={styles.main}>
