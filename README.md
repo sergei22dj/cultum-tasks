@@ -1,30 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Cultum Front-end Starter Kit
+
+> Basic project structure organizations and start point for a new project
 
 ## Getting Started
 
-First, run the development server:
+~ Clone project into your local projects folder:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+`git clone git@gitlab.com:Venumteam/cultum-fe-starter-kit.git`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+~ Open cloned project in the `IDE`
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+*deploy information goes here
 
-## Learn More
+> Basic flow example:
 
-To learn more about Next.js, take a look at the following resources:
+- MR's should be created to develop branch
+- When merged, release branch can be created and merged to the master branch
+- To deploy staging master should be merged to the staging
+- To deploy production staging should be merged to the production branch
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+> To work on this project you should install:
 
-## Deploy on Vercel
+- `IDE` - code editor
+- `git` - version control system
+- `nvm` - node version package manager
+- `nodejs` - check `nvmrc` file in the root to get the right version and install package via `nvm`
+- `yarn` - package manager
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> default API or local ports you can find in the .env.example
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Installing
+
+> Steps to run application in the DEV environment:
+
+1. `yarn` - install all required packages
+2. copy `.env.example.local` to the root and create `.env.local` file
+3. `yarn dev` - run local server
+
+> Steps to run application in PROD environment:
+
+1. 1 & 2 steps from the steps above, if not already used
+2. `yarn build` - builds the project
+3. `yarn start` - start prod environment
+
+> Additional Scripts
+
+1. `type-check` - run the type checking process
+2. `format` - run prettier for your current changes
+3. `lint` - run lint check
+
+## Coding style
+
+- Project has configured `Prettier` which helps stick to rules of coding style.
+- Check the shortcuts for your `IDE` to run `Prettier` for current file
+
+## Deployment
+
+Every merge request which merged to `Staging` or `Prod` branches runs the deployment process to corresponding live
+environment
