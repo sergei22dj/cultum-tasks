@@ -10,11 +10,16 @@ import { AppProps } from 'next/app';
 import { GlobalStyles } from '@md-styles/styled/global';
 import { theme } from '@md-styles/styled/theme';
 import { useApollo } from '../lib/apolloClient';
+// utils
+import { cookiesManager } from '@md-managers/cookies';
 // global css
 import 'normalize.css/normalize.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const apolloClient = useApollo(pageProps.initialApolloState);
+  const { getToken } = cookiesManager();
+  const token: string | undefined = pageProps.serverToken ?? getToken();
+
+  const apolloClient = useApollo(pageProps.initialApolloState, token);
 
   return (
     <>

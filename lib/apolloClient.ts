@@ -1,25 +1,28 @@
 import { useMemo } from 'react';
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+// constants
+import { AUTH_TOKEN_FIELD, API_PREFIX } from '@md-constants/common';
 
 let apolloClient: ApolloClient<Record<string, unknown>>;
 
-const API_PREFIX = '/api/graphql';
-
-function createApolloClient() {
+function createApolloClient(token: string | undefined) {
   const isServer = typeof window === 'undefined';
 
   return new ApolloClient({
     ssrMode: isServer,
     link: new HttpLink({
       uri: isServer ? `${process.env.NEXT_PUBLIC_GQL_LOCAL_API_URL}${API_PREFIX}` : API_PREFIX, // Server URL (must be absolute)
-      credentials: 'same-origin' // Additional fetch() options like `credentials` or `headers`
+      credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+      headers: {
+        ...(Boolean(token) && { [AUTH_TOKEN_FIELD]: token })
+      }
     }),
     cache: new InMemoryCache({})
   });
 }
 
-export function initializeApollo(initialState: Record<string, unknown> | null = null) {
-  const _apolloClient = apolloClient ?? createApolloClient();
+export function initializeApollo(initialState: Record<string, unknown> | null = null, token: string | undefined) {
+  const _apolloClient = apolloClient ?? createApolloClient(token);
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // gets hydrated here
@@ -38,6 +41,6 @@ export function initializeApollo(initialState: Record<string, unknown> | null = 
   return _apolloClient;
 }
 
-export function useApollo(initialState: Record<string, unknown>) {
-  return useMemo(() => initializeApollo(initialState), [initialState]);
+export function useApollo(initialState: Record<string, unknown>, token: string | undefined) {
+  return useMemo(() => initializeApollo(initialState, token), [initialState]);
 }
