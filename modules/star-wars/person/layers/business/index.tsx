@@ -1,4 +1,5 @@
 import * as React from 'react';
+// context
 import { PersonAPIContext } from '@md-sw-person/layers/api/person';
 
 interface PersonInfo {
@@ -25,9 +26,9 @@ const PersonBLContextProvider: React.FC = ({ children }) => {
 
     return [
       { label: 'Gender', value: person.gender },
-      { label: 'Hair Color', value: person.hair_color },
-      { label: 'Eye Color', value: person.eye_color },
-      { label: 'Birth Year', value: person.birth_year }
+      { label: 'Hair Color', value: person.hairColor },
+      { label: 'Eye Color', value: person.eyeColor },
+      { label: 'Birth Year', value: person.birthYear }
     ];
   }, [typeof person === 'undefined']);
 

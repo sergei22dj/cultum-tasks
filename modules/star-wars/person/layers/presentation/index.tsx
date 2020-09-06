@@ -16,18 +16,18 @@ import {
 } from './views';
 
 const PersonPresentation = () => {
-  const { isLoading } = React.useContext(PersonAPIContext);
+  const { isLoading, person, error } = React.useContext(PersonAPIContext);
   const { personInfo } = React.useContext(PersonBLContext);
 
   return (
     <ContentWrapper>
       <Wrapper>
-        <ContentLoader isLoading={isLoading}>
+        <ContentLoader isLoading={isLoading} error={error}>
           <PersonImgContainer>
             <img src='/static/images/Ben-Kenobi.jpg' alt='Kenobi' />
           </PersonImgContainer>
           <PersonDetailsContainer>
-            <PersonName>Darth Vader</PersonName>
+            {person && <PersonName>{person.name}</PersonName>}
             <PersonInfoContainer>
               {personInfo.map((i, idx) => (
                 <PersonInfo key={idx} {...i} />

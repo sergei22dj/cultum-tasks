@@ -9,12 +9,12 @@ import { PeopleBLContext } from '@md-sw-people/layers/business';
 import { Wrapper } from './views';
 
 const PeoplePresentation = () => {
-  const { isLoading } = React.useContext(PeopleAPIContext);
+  const { isLoading, error } = React.useContext(PeopleAPIContext);
   const { peopleList } = React.useContext(PeopleBLContext);
 
   return (
     <Wrapper>
-      <ContentLoader isLoading={isLoading}>
+      <ContentLoader isLoading={isLoading} error={error}>
         {peopleList.map((person) => (
           <Card {...person} key={person.id} />
         ))}
