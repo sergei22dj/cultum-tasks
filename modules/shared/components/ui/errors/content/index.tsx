@@ -13,6 +13,8 @@ const Wrapper = styled.div`
 
   background-color: ${({ theme }) => theme.colors.gray600};
   color: ${({ theme }) => theme.colors.white};
+
+  ${({ theme }) => theme.templates.centerContent};
 `;
 
 export { ErrorWrapper };

@@ -4,7 +4,7 @@ export type GetPerson = Pick<Person, 'id' | 'name' | 'birthYear' | 'eyeColor' | 
 export type People = GetPerson[];
 
 export interface GetPeopleResponse {
-  allPersons: People;
+  persons: People;
 }
 
 export interface GetPeopleVariables {

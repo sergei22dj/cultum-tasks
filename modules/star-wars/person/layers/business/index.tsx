@@ -25,10 +25,10 @@ const PersonBLContextProvider: React.FC = ({ children }) => {
     }
 
     return [
-      { label: 'Gender', value: person.gender },
-      { label: 'Hair Color', value: person.hairColor },
-      { label: 'Eye Color', value: person.eyeColor },
-      { label: 'Birth Year', value: person.birthYear }
+      { label: 'Gender', value: person.gender ?? 'N/A' },
+      { label: 'Hair Color', value: person.hairColor ?? 'N/A' },
+      { label: 'Eye Color', value: person.eyeColor ?? 'N/A' },
+      { label: 'Birth Year', value: person.birthYear ?? 'N/A' }
     ];
   }, [typeof person === 'undefined']);
 

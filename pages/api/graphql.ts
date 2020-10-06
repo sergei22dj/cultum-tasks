@@ -9,7 +9,10 @@ export const config = {
 
 const proxy = createProxyMiddleware({
   target: process.env.GQL_REMOTE_API_URL,
-  changeOrigin: true
+  changeOrigin: true,
+  pathRewrite: {
+    '^/api/graphql': '/'
+  }
 });
 
 export default proxy;

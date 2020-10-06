@@ -28,7 +28,7 @@ const PersonAPIContextProvider: React.FC = ({ children }) => {
   const { query } = useRouter();
 
   const { data, loading, error, refetch } = useQuery<GetPersonResponse, GetPersonVariables>(GET_PERSON_QUERY, {
-    variables: { id: query.id as string },
+    variables: { where: { id: query.id as string } },
     skip: !query.id
   });
 
@@ -36,7 +36,7 @@ const PersonAPIContextProvider: React.FC = ({ children }) => {
     try {
       const result = await refetch(variables);
 
-      return result.data?.Person;
+      return result.data?.person;
     } catch (error) {
       return U.errors.parseAndCreateClientError(error);
     }
@@ -45,7 +45,7 @@ const PersonAPIContextProvider: React.FC = ({ children }) => {
   return (
     <PersonAPIContext.Provider
       value={{
-        person: data ? data.Person : undefined,
+        person: data ? data.person : undefined,
         isLoading: loading,
         error: error ? U.errors.parseAndCreateClientError(error) : undefined,
         refetch: refetchPerson

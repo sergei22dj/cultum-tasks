@@ -1,8 +1,8 @@
 import { gql } from '@apollo/client';
 
 export const GET_PERSON_QUERY = gql`
-  query Person($id: ID, $name: String) {
-    Person(id: $id, name: $name) {
+  query Person($where: PersonWhereUniqueInput!) {
+    person(where: $where) {
       id
       name
       gender

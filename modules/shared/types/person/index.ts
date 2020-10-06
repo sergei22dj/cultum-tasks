@@ -1,7 +1,7 @@
 export interface Person {
   id: string;
   name: string;
-  birthYear: string;
+  birthYear: string | null;
   eyeColor:
     | 'UNKNOWN'
     | 'BLUE'

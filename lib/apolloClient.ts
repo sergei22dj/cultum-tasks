@@ -5,7 +5,7 @@ import { AUTH_TOKEN_FIELD, API_PREFIX } from '@md-constants/common';
 
 let apolloClient: ApolloClient<Record<string, unknown>>;
 
-function createApolloClient(token: string | undefined) {
+function createApolloClient(token?: string) {
   const isServer = typeof window === 'undefined';
 
   return new ApolloClient({
@@ -21,7 +21,7 @@ function createApolloClient(token: string | undefined) {
   });
 }
 
-export function initializeApollo(initialState: Record<string, unknown> | null = null, token: string | undefined) {
+export function initializeApollo(initialState: Record<string, unknown> | null = null, token?: string) {
   const _apolloClient = apolloClient ?? createApolloClient(token);
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
@@ -41,6 +41,6 @@ export function initializeApollo(initialState: Record<string, unknown> | null = 
   return _apolloClient;
 }
 
-export function useApollo(initialState: Record<string, unknown>, token: string | undefined) {
+export function useApollo(initialState: Record<string, unknown>, token?: string) {
   return useMemo(() => initializeApollo(initialState, token), [initialState]);
 }
