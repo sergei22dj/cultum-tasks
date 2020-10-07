@@ -11,7 +11,7 @@ function createApolloClient(token?: string) {
   return new ApolloClient({
     ssrMode: isServer,
     link: new HttpLink({
-      uri: isServer ? `${process.env.NEXT_PUBLIC_GQL_LOCAL_API_URL}${API_PREFIX}` : API_PREFIX, // Server URL (must be absolute)
+      uri: isServer ? process.env.GQL_REMOTE_API_URL : API_PREFIX, // Server URL (must be absolute)
       credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
       headers: {
         ...(Boolean(token) && { [AUTH_TOKEN_FIELD]: token })

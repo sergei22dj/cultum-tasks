@@ -25,7 +25,9 @@ const PeopleAPIContext = React.createContext<Context>({
 
 const PeopleAPIContextProvider: React.FC = ({ children }) => {
   // make api call here
-  const { data, loading, refetch, error } = useQuery<GetPeopleResponse, GetPeopleVariables>(GET_PEOPLE_QUERY);
+  const { data, loading, refetch, error } = useQuery<GetPeopleResponse, GetPeopleVariables>(GET_PEOPLE_QUERY, {
+    variables: { first: 5 }
+  });
 
   const refetchPeople = async (variables?: Partial<GetPeopleVariables>) => {
     try {

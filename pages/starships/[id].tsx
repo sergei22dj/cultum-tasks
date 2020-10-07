@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { GetStaticPropsContext } from 'next';
-import { MainLayout } from '@md-modules/shared/layouts/main';
+import { MainLayout } from '@md-shared/layouts/main';
 import { StarshipContainer } from '@md-sw-starship/index';
 // query
 import { GET_STARSHIP_QUERY } from '@md-sw-starship/queries/starship';
@@ -21,7 +21,8 @@ export async function getStaticPaths() {
   const apolloClient = initializeApollo();
 
   const { data } = await apolloClient.query<GetStarshipsResponse, GetStarshipsVariables>({
-    query: GET_STARSHIPS_QUERY
+    query: GET_STARSHIPS_QUERY,
+    variables: { first: 5 }
   });
 
   const paths = data?.starships.map((starship) => ({

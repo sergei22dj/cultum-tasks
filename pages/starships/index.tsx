@@ -1,6 +1,6 @@
 import * as React from 'react';
 // view components
-import { MainLayout } from '@md-modules/shared/layouts/main';
+import { MainLayout } from '@md-shared/layouts/main';
 import { StarshipsContainer } from '@md-sw-starships/index';
 // queries
 import { GET_STARSHIPS_QUERY } from '@md-queries/starships';

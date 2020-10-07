@@ -20,6 +20,8 @@
       "@md-sw-person/*": ["./modules/star-wars/person/*"],
       "@md-sw-starships/*": ["./modules/star-wars/starships/*"],
       "@md-sw-starship/*": ["./modules/star-wars/starship/*"],
+      "@md-sw-planets/*": ["./modules/star-wars/planets/*"],
+      "@md-sw-planet/*": ["./modules/star-wars/planet/*"],
       "@md-star-wars/*": ["./modules/star-wars/*"],
       "@md-queries/*": ["./modules/shared/queries/*"],
       "@md-shared/*": ["./modules/shared/*"],

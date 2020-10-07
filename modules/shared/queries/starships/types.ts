@@ -1,9 +1,6 @@
 import { Starship } from '@md-shared/types/starship';
 
-export type Starships = Pick<
-  Starship,
-  'id' | 'name' | 'status' | 'costInCredits' | 'hyperdriveRating' | 'passengers' | 'class'
->[];
+export type Starships = Pick<Starship, 'id' | 'name'>[];
 
 export interface GetStarshipsResponse {
   starships: Starships;

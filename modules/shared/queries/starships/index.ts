@@ -12,11 +12,6 @@ export const GET_STARSHIPS_QUERY = gql`
     starships(after: $after, first: $first, before: $before, last: $last, skip: $skip, orderBy: $orderBy) {
       id
       name
-      status
-      costInCredits
-      hyperdriveRating
-      passengers
-      class
     }
   }
 `;
