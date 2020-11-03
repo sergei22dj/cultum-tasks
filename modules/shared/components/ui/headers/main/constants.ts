@@ -1,5 +1,5 @@
 export const menuItems = [
-  { l: 'People', h: '/people' },
-  { l: 'Planets', h: '/planets' },
-  { l: 'Starships', h: '/starships' }
+  { l: 'People (CSR)', h: '/people' },
+  { l: 'Planets (SSR)', h: '/planets' },
+  { l: 'Starships (SSG)', h: '/starships' }
 ];
