@@ -1,11 +1,13 @@
 import * as React from 'react';
 // context
 import { PeopleAPIContext } from '@md-sw-people/layers/api/people';
-// mock
-import { Person } from '@md-modules/shared/mock';
+// types
+import { GetPerson } from '@md-sw-people/queries/people/types';
+
+type ListItem = Pick<GetPerson, 'id' | 'name'>;
 
 interface Context {
-  peopleList: Pick<Person, 'id' | 'name'>[];
+  peopleList: ListItem[];
 }
 
 const PeopleBLContext = React.createContext<Context>({
@@ -16,16 +18,12 @@ const PeopleBLContextProvider: React.FC = ({ children }) => {
   // add business logic here
   const { people } = React.useContext(PeopleAPIContext);
 
-  const peopleList = React.useMemo<Pick<Person, 'id' | 'name'>[]>(() => {
-    if (!people) {
-      return [];
-    }
-
+  const peopleList = React.useMemo<ListItem[]>(() => {
     return people.map(({ id, name }) => ({
       name,
       id
     }));
-  }, [typeof people === 'undefined']);
+  }, [people.length]);
 
   return (
     <PeopleBLContext.Provider

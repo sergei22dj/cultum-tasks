@@ -6,20 +6,22 @@ import { Card } from '@md-sw-people/compoonents/card';
 import { PeopleAPIContext } from '@md-sw-people/layers/api/people';
 import { PeopleBLContext } from '@md-sw-people/layers/business';
 // views
-import { Wrapper } from './views';
+import { ContentWrapper, Wrapper } from '@md-shared/views/common';
 
 const PeoplePresentation = () => {
-  const { isLoading } = React.useContext(PeopleAPIContext);
+  const { isLoading, error } = React.useContext(PeopleAPIContext);
   const { peopleList } = React.useContext(PeopleBLContext);
 
   return (
-    <Wrapper>
-      <ContentLoader isLoading={isLoading}>
-        {peopleList.map((person) => (
-          <Card {...person} key={person.id} />
-        ))}
+    <ContentWrapper>
+      <ContentLoader isLoading={isLoading} error={error}>
+        <Wrapper>
+          {peopleList.map((person) => (
+            <Card {...person} key={person.id} />
+          ))}
+        </Wrapper>
       </ContentLoader>
-    </Wrapper>
+    </ContentWrapper>
   );
 };
 
