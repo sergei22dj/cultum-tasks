@@ -25,8 +25,8 @@ const StarshipBLContextProvider: React.FC = ({ children }) => {
     }
 
     return [
-      { label: 'Status', value: starship.status ?? 'N/A' },
-      { label: 'Class', value: starship.class ?? 'N/A' },
+      { label: 'Name', value: starship.name ?? 'N/A' },
+      { label: 'Model', value: starship.model ?? 'N/A' },
       { label: 'Cost In Credits', value: starship.costInCredits ?? 'N/A' },
       { label: 'Hyperdrive Rating', value: starship.hyperdriveRating ?? 'N/A' },
       { label: 'Passengers', value: starship.passengers ?? 'N/A' }

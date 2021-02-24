@@ -21,10 +21,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
   const { params } = context;
 
-  await apolloClient.query<GetPlanetResponse, GetPlanetVariables>({
-    query: GET_PLANET_QUERY,
-    variables: { where: { id: params?.id as string } }
-  });
+  try {
+    await apolloClient.query<GetPlanetResponse, GetPlanetVariables>({
+      query: GET_PLANET_QUERY,
+      variables: { id: params?.id as string }
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('GET_PLANET_QUERY_ERROR', error);
+  }
 
   return {
     props: {

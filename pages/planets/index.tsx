@@ -18,10 +18,15 @@ const PlanetsPage = () => (
 export async function getServerSideProps() {
   const apolloClient = initializeApollo();
 
-  await apolloClient.query<GetPlanetsResponse, GetPlanetsVariables>({
-    query: GET_PLANETS_QUERY,
-    variables: { first: 5 }
-  });
+  try {
+    await apolloClient.query<GetPlanetsResponse, GetPlanetsVariables>({
+      query: GET_PLANETS_QUERY,
+      variables: { first: 5 }
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('GET_PLANETS_QUERY_ERROR', error);
+  }
 
   return {
     props: {

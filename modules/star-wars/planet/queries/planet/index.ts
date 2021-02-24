@@ -1,11 +1,10 @@
 import { gql } from '@apollo/client';
 
 export const GET_PLANET_QUERY = gql`
-  query GetPlanet($where: PlanetWhereUniqueInput!) {
-    planet(where: $where) {
+  query GetPlanet($id: ID, $planetID: ID) {
+    planet(id: $id, planetID: $planetID) {
       id
       name
-      status
       population
       orbitalPeriod
       gravity

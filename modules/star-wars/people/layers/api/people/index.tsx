@@ -33,7 +33,7 @@ const PeopleAPIContextProvider: React.FC = ({ children }) => {
     try {
       const result = await refetch(variables);
 
-      return result.data ? result.data.persons : [];
+      return result.data ? result.data.allPeople.people : [];
     } catch (error) {
       return U.errors.parseAndCreateClientError(error);
     }
@@ -42,7 +42,7 @@ const PeopleAPIContextProvider: React.FC = ({ children }) => {
   return (
     <PeopleAPIContext.Provider
       value={{
-        people: data ? data.persons : [],
+        people: data ? data.allPeople.people : [],
         error: error ? U.errors.parseAndCreateClientError(error) : undefined,
         isLoading: loading,
         refetch: refetchPeople

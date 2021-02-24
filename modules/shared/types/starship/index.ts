@@ -1,5 +1,4 @@
 export interface Starship {
-  status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
   id: string;
   costInCredits: number;
   hyperdriveRating: number;
@@ -12,5 +11,5 @@ export interface Starship {
   maxAtmospheringSpeed: number;
   mglt: number;
   consumables: string;
-  class: string;
+  model: string;
 }

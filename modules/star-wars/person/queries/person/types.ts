@@ -7,8 +7,6 @@ export interface GetPersonResponse {
 }
 
 export interface GetPersonVariables {
-  where: {
-    id?: string;
-    name?: string;
-  };
+  id?: string;
+  personID?: string;
 }

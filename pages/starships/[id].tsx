@@ -25,7 +25,7 @@ export async function getStaticPaths() {
     variables: { first: 5 }
   });
 
-  const paths = data?.starships.map((starship) => ({
+  const paths = data?.allStarships.starships.map((starship) => ({
     params: { id: starship.id }
   }));
 
@@ -35,10 +35,15 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }: GetStaticPropsContext) {
   const apolloClient = initializeApollo();
 
-  await apolloClient.query<GetStarshipResponse, GetStarshipVariables>({
-    variables: { where: { id: params?.id as string } },
-    query: GET_STARSHIP_QUERY
-  });
+  try {
+    await apolloClient.query<GetStarshipResponse, GetStarshipVariables>({
+      variables: { id: params?.id as string },
+      query: GET_STARSHIP_QUERY
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log('GET_STARSHIP_QUERY_ERROR', error);
+  }
 
   return {
     props: {

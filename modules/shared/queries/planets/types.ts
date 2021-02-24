@@ -4,7 +4,10 @@ export type Planet = Pick<P.Planet, 'id' | 'name'>;
 export type Planets = Planet[];
 
 export interface GetPlanetsResponse {
-  planets: Planets;
+  allPlanets: {
+    planets: Planets;
+    totalCount: number;
+  };
 }
 
 export interface GetPlanetsVariables {

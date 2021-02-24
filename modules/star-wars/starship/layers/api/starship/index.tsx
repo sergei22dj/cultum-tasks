@@ -28,7 +28,7 @@ const StarshipAPIContextProvider: React.FC = ({ children }) => {
   const { query } = useRouter();
 
   const { data, loading, error, refetch } = useQuery<GetStarshipResponse, GetStarshipVariables>(GET_STARSHIP_QUERY, {
-    variables: { where: { id: query.id as string } },
+    variables: { id: query.id as string },
     skip: !query.id
   });
 

@@ -25,7 +25,6 @@ const PlanetBLContextProvider: React.FC = ({ children }) => {
     }
 
     return [
-      { label: 'Status', value: planet.status ?? 'N/A' },
       { label: 'Diameter', value: planet.diameter ?? 'N/A' },
       { label: 'Gravity', value: planet.gravity ?? 'N/A' },
       { label: 'Orbital Period', value: planet.orbitalPeriod ?? 'N/A' },

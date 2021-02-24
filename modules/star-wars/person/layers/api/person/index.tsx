@@ -28,7 +28,7 @@ const PersonAPIContextProvider: React.FC = ({ children }) => {
   const { query } = useRouter();
 
   const { data, loading, error, refetch } = useQuery<GetPersonResponse, GetPersonVariables>(GET_PERSON_QUERY, {
-    variables: { where: { id: query.id as string } },
+    variables: { id: query.id as string },
     skip: !query.id
   });
 

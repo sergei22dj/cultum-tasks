@@ -1,7 +1,6 @@
 export interface Planet {
   id: string;
   name: string;
-  status: 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';
   updatedAt: string;
   createdAt: string;
   population: number;
