@@ -31,6 +31,7 @@ const StarshipBLContextProvider: React.FC = ({ children }) => {
       { label: 'Hyperdrive Rating', value: starship.hyperdriveRating ?? 'N/A' },
       { label: 'Passengers', value: starship.passengers ?? 'N/A' }
     ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeof starship === 'undefined']);
 
   return (

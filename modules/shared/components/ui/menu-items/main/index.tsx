@@ -9,14 +9,6 @@ interface Props {
   label: string;
 }
 
-const MenuItem: React.FC<Props> = ({ href, label }) => (
-  <MenuI>
-    <Link href={href} passHref>
-      <a>{label}</a>
-    </Link>
-  </MenuI>
-);
-
 const MenuI = styled.div`
   padding: 5px 10px;
 
@@ -31,5 +23,13 @@ const MenuI = styled.div`
     }
   }
 `;
+
+const MenuItem: React.FC<Props> = ({ href, label }) => (
+  <MenuI>
+    <Link href={href} passHref>
+      <a>{label}</a>
+    </Link>
+  </MenuI>
+);
 
 export { MenuItem };

@@ -23,7 +23,7 @@ const PlanetsBLContextProvider: React.FC = ({ children }) => {
       name,
       id
     }));
-  }, [planets.length]);
+  }, [planets]);
 
   return (
     <PlanetsBLContext.Provider

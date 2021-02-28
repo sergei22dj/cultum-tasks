@@ -12,6 +12,11 @@ interface Props {
   error?: ClientError;
 }
 
+const Wrapper = styled.div`
+  ${({ theme }) => theme.templates.absolute};
+  ${({ theme }) => theme.templates.centerContent};
+`;
+
 const ContentLoader: React.FC<Props> = ({ children, isLoading, error }) => {
   if (isLoading) {
     return (
@@ -27,10 +32,5 @@ const ContentLoader: React.FC<Props> = ({ children, isLoading, error }) => {
 
   return <>{children}</>;
 };
-
-const Wrapper = styled.div`
-  ${({ theme }) => theme.templates.absolute};
-  ${({ theme }) => theme.templates.centerContent};
-`;
 
 export { ContentLoader };

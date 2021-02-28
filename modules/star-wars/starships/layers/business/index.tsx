@@ -24,7 +24,7 @@ const StarshipsBLContextProvider: React.FC = ({ children }) => {
         name,
         id
       })),
-    [starships.length]
+    [starships]
   );
 
   return (

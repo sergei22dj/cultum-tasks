@@ -42,5 +42,5 @@ export function initializeApollo(initialState: Record<string, unknown> | null = 
 }
 
 export function useApollo(initialState: Record<string, unknown>, token?: string) {
-  return useMemo(() => initializeApollo(initialState, token), [initialState]);
+  return useMemo(() => initializeApollo(initialState, token), [initialState, token]);
 }

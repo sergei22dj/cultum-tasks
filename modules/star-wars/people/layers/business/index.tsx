@@ -23,7 +23,7 @@ const PeopleBLContextProvider: React.FC = ({ children }) => {
       name,
       id
     }));
-  }, [people.length]);
+  }, [people]);
 
   return (
     <PeopleBLContext.Provider

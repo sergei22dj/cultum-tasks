@@ -23,29 +23,31 @@ export const useDeviceType = () => {
     const width = wind.innerWidth || docu.clientWidth || body.clientWidth;
 
     if (width < DEVICE_WIDTH[EScreenSizes.MOBILE]) return EScreenSizes.MOBILE;
-    if (width >= DEVICE_WIDTH[EScreenSizes.MOBILE] && width < DEVICE_WIDTH[EScreenSizes.TABLET])
+    if (width >= DEVICE_WIDTH[EScreenSizes.MOBILE] && width < DEVICE_WIDTH[EScreenSizes.TABLET]) {
       return EScreenSizes.TABLET;
+    }
 
     return EScreenSizes.DESKTOP;
   };
 
-  const handleResize = React.useCallback(
-    debounce(() => {
-      const type = getDeviceType();
+  const handleResize = debounce(() => {
+    const type = getDeviceType();
 
-      if (deviceType !== type) setDeviceType(type);
-    }, 150),
-    []
-  );
+    if (deviceType !== type) setDeviceType(type);
+  }, 150);
 
   // effects
-  React.useEffect(() => {
-    handleResize();
+  React.useEffect(
+    () => {
+      handleResize();
 
-    window.addEventListener('resize', handleResize);
+      window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+      return () => window.removeEventListener('resize', handleResize);
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   return {
     deviceType

@@ -30,6 +30,7 @@ const PersonBLContextProvider: React.FC = ({ children }) => {
       { label: 'Eye Color', value: person.eyeColor ?? 'N/A' },
       { label: 'Birth Year', value: person.birthYear ?? 'N/A' }
     ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [typeof person === 'undefined']);
 
   return (

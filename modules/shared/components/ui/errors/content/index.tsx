@@ -5,8 +5,6 @@ interface Props {
   message: string;
 }
 
-const ErrorWrapper: React.FC<Props> = ({ message }) => <Wrapper>{message}</Wrapper>;
-
 const Wrapper = styled.div`
   min-height: 300px;
   font-size: 24px;
@@ -16,5 +14,9 @@ const Wrapper = styled.div`
 
   ${({ theme }) => theme.templates.centerContent};
 `;
+
+const ErrorWrapper: React.FC<Props> = ({ message }) => {
+  return <Wrapper> {message}</Wrapper>;
+};
 
 export { ErrorWrapper };
