@@ -30,7 +30,7 @@
       "@md-utils/*": ["./modules/shared/utils/*"],
       "@md-utils": ["./modules/shared/utils"],
       "@md-managers/*": ["./modules/shared/managers/*"],
-      "@md-constants/*": ["./modules/shared/constants/*"]
+      "@md-constants/*": ["./modules/shared/constants/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
