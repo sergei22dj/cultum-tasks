@@ -11,9 +11,9 @@ import { ClientError } from '@md-utils/errors/custom';
 
 interface Context {
   starships: Starships;
-  error?: ClientError;
+  error?: ClientError<string>;
   isLoading: boolean;
-  refetch: (variables?: GetStarshipsVariables) => Promise<ClientError | Starships>;
+  refetch: (variables?: GetStarshipsVariables) => Promise<ClientError<string> | Starships>;
 }
 
 const StarshipsAPIContext = React.createContext<Context>({

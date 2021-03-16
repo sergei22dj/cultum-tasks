@@ -13,8 +13,8 @@ import { GET_PLANET_QUERY } from '@md-sw-planet/queries/planet';
 interface Context {
   planet?: Planet;
   isLoading: boolean;
-  error?: ClientError;
-  refetch: (variables?: Partial<GetPlanetVariables>) => Promise<ClientError | Planet | undefined>;
+  error?: ClientError<string>;
+  refetch: (variables?: Partial<GetPlanetVariables>) => Promise<ClientError<string> | Planet | undefined>;
 }
 
 const PlanetAPIContext = React.createContext<Context>({

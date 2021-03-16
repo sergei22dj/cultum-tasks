@@ -2,6 +2,8 @@
 import thunk from 'redux-thunk';
 import { RootStore } from 'store';
 import { AnyAction, applyMiddleware, compose, createStore as createReduxStore, Reducer, StoreEnhancer } from 'redux';
+// local
+import { createAPI } from '@md-shared/services/api';
 
 interface IWindow extends Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: any;
@@ -15,7 +17,7 @@ export const createStore = (makeRootReducer: Reducer<RootStore, AnyAction>, enha
   // ======================================================
   // Middleware Configuration
   // ======================================================
-  const middleware: [typeof thunk] = [thunk];
+  const middleware = [thunk.withExtraArgument(createAPI)];
 
   // ======================================================
   // Store Enhancers

@@ -13,8 +13,8 @@ import { GET_STARSHIP_QUERY } from '@md-sw-starship/queries/starship';
 interface Context {
   starship?: GetStarship;
   isLoading: boolean;
-  error?: ClientError;
-  refetch: (variables?: Partial<GetStarshipVariables>) => Promise<ClientError | GetStarship | undefined>;
+  error?: ClientError<string>;
+  refetch: (variables?: Partial<GetStarshipVariables>) => Promise<ClientError<string> | GetStarship | undefined>;
 }
 
 const StarshipAPIContext = React.createContext<Context>({

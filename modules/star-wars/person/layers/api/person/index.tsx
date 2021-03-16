@@ -13,8 +13,8 @@ import { GET_PERSON_QUERY } from '@md-sw-person/queries/person';
 interface Context {
   person?: GetPerson;
   isLoading: boolean;
-  error?: ClientError;
-  refetch: (variables?: Partial<GetPersonVariables>) => Promise<ClientError | GetPerson | undefined>;
+  error?: ClientError<string>;
+  refetch: (variables?: Partial<GetPersonVariables>) => Promise<ClientError<string> | GetPerson | undefined>;
 }
 
 const PersonAPIContext = React.createContext<Context>({

@@ -12,8 +12,8 @@ import { GET_PLANETS_QUERY } from '@md-shared/queries/planets';
 interface Context {
   planets: Planets;
   isLoading: boolean;
-  error?: ClientError;
-  refetch: (variables?: Partial<GetPlanetsVariables>) => Promise<ClientError | Planets>;
+  error?: ClientError<string>;
+  refetch: (variables?: Partial<GetPlanetsVariables>) => Promise<ClientError<string> | Planets>;
 }
 
 const PlanetsAPIContext = React.createContext<Context>({
