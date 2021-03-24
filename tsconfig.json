@@ -31,6 +31,7 @@
       "@md-utils": ["./modules/shared/utils"],
       "@md-managers/*": ["./modules/shared/managers/*"],
       "@md-constants/*": ["./modules/shared/constants/*"],
+      "@md-store/*": ["./store/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

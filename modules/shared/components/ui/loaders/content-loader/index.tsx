@@ -9,7 +9,7 @@ import { ErrorWrapper } from '../../errors/content';
 
 interface Props {
   isLoading: boolean;
-  error?: ClientError<string>;
+  error?: ClientError<string | null>;
 }
 
 const Wrapper = styled.div`
@@ -26,7 +26,7 @@ const ContentLoader: React.FC<Props> = ({ children, isLoading, error }) => {
     );
   }
 
-  if (error) {
+  if (error?.error) {
     return <ErrorWrapper message={error.error} />;
   }
 

@@ -1,15 +1,15 @@
 // libs
 import { combineReducers } from 'redux';
 // shapes
+import { APIReducers } from './modules/api';
 import { UIReducers } from './modules/ui';
-import { InitialState as ProductsState } from './modules/products';
 
 export type RootStore = {
   ui: UIReducers;
-  products: ProductsState;
+  api: APIReducers;
 };
 
 export const rootStore = combineReducers<RootStore>({
   ui: require('./modules/ui').uiReducers,
-  products: require('./modules/products').reducer
+  api: require('./modules/api').apiReducers
 });
