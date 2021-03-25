@@ -7,7 +7,7 @@ import { GET_STARSHIPS_QUERY } from '@md-queries/starships';
 // types
 import { GetStarshipsResponse, GetStarshipsVariables } from '@md-queries/starships/types';
 // lib
-import { initializeApollo } from '../../lib/apolloClient';
+import { initializeApollo } from '../../../lib/apolloClient';
 
 const StarshipsPage = () => (
   <MainLayout>
