@@ -4,4 +4,7 @@ export const graphqlMenuItems = [
   { l: 'Starships (SSG)', h: '/graphql/starships' }
 ];
 
-export const reduxMenuItems = [{ l: 'Starships (CSR)', h: '/redux/starships' }];
+export const reduxMenuItems = [
+  { l: 'Starships (CSR)', h: '/redux/starships' },
+  { l: 'Planets (SSR)', h: '/redux/planets' }
+];
