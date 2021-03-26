@@ -8,11 +8,12 @@ import { ContentWrapper, Wrapper } from '@md-shared/views/common';
 import { useDispatch, useSelector } from 'react-redux';
 // store
 import * as API from '@md-store/modules/api';
+// utils
+import { clientError } from '@md-shared/services/api';
 // types
 import { Starship } from '@md-shared/types/starship';
 import { RootStore } from '@md-store/index';
 import { ThunkDispatch } from '@md-store/helpers';
-import { clientError } from '@md-shared/services/api';
 
 type ListItem = Pick<Starship, 'id' | 'name'>;
 
@@ -39,8 +40,7 @@ const Starships = () => {
 
   React.useEffect(() => {
     dispatch(API.starships?.performAPIGetStarships());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
 
   return (
     <ContentWrapper>
