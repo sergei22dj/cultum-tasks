@@ -9,7 +9,7 @@ import { GET_STARSHIPS_QUERY } from '@md-queries/starships';
 import { GetStarshipResponse, GetStarshipVariables } from '@md-sw-starship/queries/starship/types';
 import { GetStarshipsResponse, GetStarshipsVariables } from '@md-queries/starships/types';
 //
-import { initializeApollo } from '../../lib/apolloClient';
+import { initializeApollo } from '../../../lib/apolloClient';
 
 const StarshipPage = () => (
   <MainLayout>

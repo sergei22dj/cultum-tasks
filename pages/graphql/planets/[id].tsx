@@ -8,7 +8,7 @@ import { GET_PLANET_QUERY } from '@md-sw-planet/queries/planet';
 import { GetServerSidePropsContext } from 'next';
 import { GetPlanetResponse, GetPlanetVariables } from '@md-sw-planet/queries/planet/types';
 // libs
-import { initializeApollo } from '../../lib/apolloClient';
+import { initializeApollo } from '../../../lib/apolloClient';
 
 const StarshipPage = () => (
   <MainLayout>

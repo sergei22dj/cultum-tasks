@@ -1,4 +1,6 @@
 import axios from 'axios';
+// controllers
+import { getStarshipsControllers } from './controllers';
 
 export type CustomHeaders = { [key: string]: string };
 export type APIVariables = {
@@ -7,7 +9,7 @@ export type APIVariables = {
   customHeaders?: CustomHeaders;
 };
 
-const API_URL = process.env.NEXT_PUBLIC_ANALYTICS_ID;
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export const createAPI = ({ baseURL = API_URL, customHeaders = {}, token }: APIVariables = {}) => {
   /* ------------- API instance ------------- */
@@ -27,7 +29,9 @@ export const createAPI = ({ baseURL = API_URL, customHeaders = {}, token }: APIV
   const getRoot = () => api.get<{ result: string[] }>('/');
 
   return {
-    getRoot
+    getRoot,
+    //  STARSHIPS
+    ...getStarshipsControllers(api)
   };
 };
 

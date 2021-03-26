@@ -1,5 +1,5 @@
 import { AnyAction, Store } from 'redux';
-import { RootStore, rootStore } from 'store/index';
+import { RootStore, rootStore } from '@md-store/index';
 import createStore from './createStore';
 
 let store: (Store<RootStore, AnyAction> & { dispatch: unknown }) | undefined;

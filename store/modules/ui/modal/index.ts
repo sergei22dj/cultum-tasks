@@ -1,4 +1,4 @@
-import { createAction } from 'store/helpers';
+import { createAction } from '@md-store/helpers';
 
 /* ------------- Types ------------- */
 
