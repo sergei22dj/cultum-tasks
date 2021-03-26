@@ -19,11 +19,11 @@ export async function getServerSideProps() {
   const { dispatch } = reduxStore;
 
   try {
-    const data = await axios.get('https://www.swapi.tech/api/planets');
+    const data = await axios.get('https://swapi.dev/api/planets');
 
     dispatch(setGetPlanetsSuccessAction(data.data));
   } catch (err) {
-    return err;
+    // console.log(err);
   }
   return { props: { initialReduxState: JSON.parse(JSON.stringify(reduxStore.getState())) } };
 }

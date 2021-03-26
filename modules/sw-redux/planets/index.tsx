@@ -19,13 +19,14 @@ type ListItem = Pick<Planet, 'id' | 'name'>;
 const Planets = () => {
   const dispatch = useDispatch<ThunkDispatch>();
 
-  const { data, error, loading } = useSelector<
+  const { data, error, loading, ssr } = useSelector<
     RootStore,
-    Pick<RootStore['api']['planets'], 'data' | 'error' | 'loading'>
+    Pick<RootStore['api']['planets'], 'data' | 'error' | 'loading' | 'ssr'>
   >((state) => ({
     data: state.api.planets.data,
     error: state.api.planets.error,
-    loading: state.api.planets.loading
+    loading: state.api.planets.loading,
+    ssr: state.api.planets.ssr
   }));
 
   const planetsList = React.useMemo<ListItem[] | undefined>(
@@ -38,7 +39,7 @@ const Planets = () => {
   );
 
   React.useEffect(() => {
-    dispatch(API.planets?.performAPIGetPlanets());
+    if (!ssr) dispatch(API.planets?.performAPIGetPlanets());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

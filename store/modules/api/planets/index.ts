@@ -39,12 +39,14 @@ export type InitialState = {
   loading: boolean;
   error: null | string;
   data?: GetPlanetsResponse;
+  ssr: boolean;
 };
 
 export const INITIAL_STATE: InitialState = {
   loading: false,
   error: null,
-  data: undefined
+  data: undefined,
+  ssr: false
 };
 
 /* ------------- Thunks ------------- */
@@ -82,7 +84,8 @@ export function reducer(state = INITIAL_STATE, action: Actions): InitialState {
       return {
         ...state,
         data: action.payload,
-        error: null
+        error: null,
+        ssr: typeof Window === 'undefined'
       };
     case GET_PLANETS_LOADING:
       return {

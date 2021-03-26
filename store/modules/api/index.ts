@@ -5,7 +5,7 @@ import * as planets from './planets';
 
 export type APIReducers = {
   starships: starships.InitialState;
-  planets: starships.InitialState;
+  planets: planets.InitialState;
 };
 
 export const apiReducers = combineReducers<APIReducers>({
