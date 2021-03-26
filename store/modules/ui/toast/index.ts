@@ -33,13 +33,11 @@ export type InitialState = {
   type: NotificationType;
   open: boolean;
   message: string;
-  onPress(e: unknown): unknown;
 };
 
 export const INITIAL_STATE: InitialState = {
   type: 'ERROR',
   message: '',
-  onPress: () => undefined,
   open: false
 };
 

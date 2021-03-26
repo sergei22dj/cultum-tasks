@@ -17,7 +17,7 @@ export const createAPI = ({ baseURL = API_URL, customHeaders = {}, token }: APIV
   const api = axios.create({
     baseURL,
     headers: {
-      // 'Cache-Control': 'no-cache',
+      'Cache-Control': 'no-cache',
       ...customHeaders,
       ...(token && { Authorization: `Bearer ${token}` })
     },

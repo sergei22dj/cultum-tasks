@@ -38,13 +38,13 @@ type Actions = SetGetStarshipsLoadingAction | SetGetStarshipsErrorAction | SetGe
 export type InitialState = {
   loading: boolean;
   error: null | string;
-  data?: GetStarshipsResponse;
+  data: GetStarshipsResponse | null;
 };
 
 export const INITIAL_STATE: InitialState = {
   loading: false,
   error: null,
-  data: undefined
+  data: null
 };
 
 /* ------------- Thunks ------------- */

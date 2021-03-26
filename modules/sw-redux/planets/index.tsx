@@ -5,28 +5,22 @@ import { ContentLoader } from '@md-ui/loaders/content-loader';
 // views
 import { ContentWrapper, Wrapper } from '@md-shared/views/common';
 // hooks
-import { useDispatch, useSelector } from 'react-redux';
-// store
-import * as API from '@md-store/modules/api';
+import { useSelector } from 'react-redux';
 // types
 import { Planet } from '@md-shared/types/planet';
 import { RootStore } from '@md-store/index';
-import { ThunkDispatch } from '@md-store/helpers';
 import { clientError } from '@md-shared/services/api';
 
 type ListItem = Pick<Planet, 'id' | 'name'>;
 
 const Planets = () => {
-  const dispatch = useDispatch<ThunkDispatch>();
-
-  const { data, error, loading, ssr } = useSelector<
+  const { data, error, loading } = useSelector<
     RootStore,
-    Pick<RootStore['api']['planets'], 'data' | 'error' | 'loading' | 'ssr'>
+    Pick<RootStore['api']['planets'], 'data' | 'error' | 'loading'>
   >((state) => ({
     data: state.api.planets.data,
     error: state.api.planets.error,
-    loading: state.api.planets.loading,
-    ssr: state.api.planets.ssr
+    loading: state.api.planets.loading
   }));
 
   const planetsList = React.useMemo<ListItem[] | undefined>(
@@ -37,11 +31,6 @@ const Planets = () => {
       })),
     [data]
   );
-
-  React.useEffect(() => {
-    if (!ssr) dispatch(API.planets?.performAPIGetPlanets());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <ContentWrapper>

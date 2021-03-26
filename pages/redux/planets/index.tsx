@@ -3,9 +3,10 @@ import * as React from 'react';
 import { Planets } from '@md-sw-redux/planets';
 import { MainLayout } from '@md-shared/layouts/main';
 // store
-import axios from 'axios';
-import { setGetPlanetsSuccessAction } from '@md-store/modules/api/planets';
 import { initializeStore } from 'lib/redux/initStore';
+// types
+import * as API from '@md-store/modules/api';
+import { ThunkDispatch } from '@md-store/helpers';
 
 const PlanetsPage = () => (
   <MainLayout>
@@ -15,17 +16,11 @@ const PlanetsPage = () => (
 
 export async function getServerSideProps() {
   const reduxStore = initializeStore();
+  const dispatch = reduxStore.dispatch as ThunkDispatch;
 
-  const { dispatch } = reduxStore;
+  await dispatch(API.planets.performAPIGetPlanets());
 
-  try {
-    const data = await axios.get('https://swapi.dev/api/planets');
-
-    dispatch(setGetPlanetsSuccessAction(data.data));
-  } catch (err) {
-    // console.log(err);
-  }
-  return { props: { initialReduxState: JSON.parse(JSON.stringify(reduxStore.getState())) } };
+  return { props: { initialReduxState: reduxStore.getState() } };
 }
 
 export default PlanetsPage;
