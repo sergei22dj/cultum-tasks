@@ -1,6 +1,7 @@
 import axios from 'axios';
 // controllers
 import { getStarshipsControllers, getPlanetsControllers } from './controllers';
+import { getPlanetControllers } from './controllers/planet';
 
 export type CustomHeaders = { [key: string]: string };
 export type APIVariables = {
@@ -33,7 +34,9 @@ export const createAPI = ({ baseURL = API_URL, customHeaders = {}, token }: APIV
     // STARSHIPS
     ...getStarshipsControllers(api),
     // PLANETS
-    ...getPlanetsControllers(api)
+    ...getPlanetsControllers(api),
+    // PLANET
+    ...getPlanetControllers(api)
   };
 };
 

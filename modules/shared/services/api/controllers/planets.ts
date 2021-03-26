@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 
-type Planet = {
+export type Planet = {
   uid: string;
   name: string;
   url: string;

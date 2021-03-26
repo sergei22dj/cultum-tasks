@@ -39,3 +39,18 @@ export const CardFooterTitle = styled.h5`
   color: ${({ theme }) => theme.colors.white};
   margin: 0;
 `;
+
+export const ViewButton = styled.button`
+  padding: 5px 10px;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid ${({ theme }) => theme.colors.green200};
+  color: #fff;
+  outline: none;
+  transition: background-color 0.2s linear;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(135, 204, 67, 0.8);
+  }
+`;

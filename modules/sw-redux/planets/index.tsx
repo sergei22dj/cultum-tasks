@@ -37,7 +37,7 @@ const Planets = () => {
       <ContentLoader isLoading={loading} error={clientError(error)}>
         <Wrapper>
           {planetsList?.map((planet) => (
-            <Card key={planet.id} name={planet.name} />
+            <Card key={planet.id} name={planet.name} id={planet.id} />
           ))}
         </Wrapper>
       </ContentLoader>
