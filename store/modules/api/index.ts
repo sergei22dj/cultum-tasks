@@ -1,22 +1,16 @@
 import { combineReducers } from 'redux';
 // local
-import * as starships from './starships';
-import * as starship from './starship';
-import * as planets from './planets';
-import * as planet from './planet';
+import * as starships from '../api/starships';
+import * as planets from '../api/planets';
 
 export type APIReducers = {
-  starships: starships.InitialState;
-  planets: planets.InitialState;
-  planet: planet.InitialState;
-  starship: starship.InitialState;
+  starships: starships.StarshipsAPIReducers;
+  planets: planets.PlanetsAPIReducers;
 };
 
 export const apiReducers = combineReducers<APIReducers>({
-  starships: starships.reducer,
-  planets: planets.reducer,
-  planet: planet.reducer,
-  starship: starship.reducer
+  starships: starships.starshipsReducers,
+  planets: planets.planetsReducers
 });
 
-export { starships, planets, planet, starship };
+export { starships, planets };

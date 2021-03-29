@@ -27,11 +27,11 @@ const PlanetContainer = () => {
   // store
   const { data: planet, error, loading } = useSelector<
     RootStore,
-    Pick<RootStore['api']['planet'], 'data' | 'error' | 'loading'>
+    Pick<RootStore['api']['planets']['getPlanet'], 'data' | 'error' | 'loading'>
   >((state) => ({
-    data: state.api.planet.data,
-    error: state.api.planet.error,
-    loading: state.api.planet.loading
+    data: state.api.planets.getPlanet.data,
+    error: state.api.planets.getPlanet.error,
+    loading: state.api.planets.getPlanet.loading
   }));
 
   // data transformation

@@ -7,7 +7,7 @@ import {
   getRequestError
 } from '@md-shared/services/api/helpers';
 import { createAction, ThunkAction } from '@md-store/helpers';
-import { StarshipTechResponce, StarshipTechResult } from '@md-shared/services/api/controllers/starship';
+import { StarshipTechResponce, StarshipTechResult } from '@md-shared/services/api/controllers/starships';
 
 /* ------------- Types ------------- */
 

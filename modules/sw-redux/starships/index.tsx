@@ -24,11 +24,11 @@ const Starships = () => {
   // store
   const { data, error, loading } = useSelector<
     RootStore,
-    Pick<RootStore['api']['starships'], 'data' | 'error' | 'loading'>
+    Pick<RootStore['api']['starships']['getStarships'], 'data' | 'error' | 'loading'>
   >((state) => ({
-    data: state.api.starships.data,
-    error: state.api.starships.error,
-    loading: state.api.starships.loading
+    data: state.api.starships.getStarships.data,
+    error: state.api.starships.getStarships.error,
+    loading: state.api.starships.getStarships.loading
   }));
 
   // data transformation
@@ -42,7 +42,7 @@ const Starships = () => {
   );
 
   React.useEffect(() => {
-    dispatch(API.starships?.performAPIGetStarships());
+    dispatch(API.starships.getStarships.performAPIGetStarships());
   }, [dispatch]);
 
   return (

@@ -7,7 +7,7 @@ import {
   getRequestError
 } from '@md-shared/services/api/helpers';
 import { createAction, ThunkAction } from '@md-store/helpers';
-import { PlanetTechResponce, PlanetTechResponceResult } from '@md-shared/services/api/controllers/planet';
+import { PlanetTechResponce, PlanetTechResponceResult } from '@md-shared/services/api/controllers/planets';
 
 /* ------------- Types ------------- */
 

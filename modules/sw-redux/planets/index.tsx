@@ -17,11 +17,11 @@ const Planets = () => {
   // store
   const { data, error, loading } = useSelector<
     RootStore,
-    Pick<RootStore['api']['planets'], 'data' | 'error' | 'loading'>
+    Pick<RootStore['api']['planets']['getPlanets'], 'data' | 'error' | 'loading'>
   >((state) => ({
-    data: state.api.planets.data,
-    error: state.api.planets.error,
-    loading: state.api.planets.loading
+    data: state.api.planets.getPlanets.data,
+    error: state.api.planets.getPlanets.error,
+    loading: state.api.planets.getPlanets.loading
   }));
 
   // data transformation

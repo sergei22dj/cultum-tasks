@@ -18,7 +18,7 @@ export async function getServerSideProps() {
   const reduxStore = initializeStore();
   const dispatch = reduxStore.dispatch as ThunkDispatch;
 
-  await dispatch(API.planets.performAPIGetPlanets());
+  await dispatch(API.planets.getPlanets.performAPIGetPlanets());
 
   return { props: { initialReduxState: reduxStore.getState() } };
 }

@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 
-export type Planet = {
+export type PlanetTech = {
   uid: string;
   name: string;
   url: string;
@@ -12,9 +12,38 @@ export interface GetPlanetsResponse {
   total_pages: number;
   previous: string;
   next: string;
-  results: Planet[];
+  results: PlanetTech[];
+}
+
+export interface PlanetTechProperties {
+  name: string;
+  rotation_period: string;
+  orbital_period: string;
+  diameter: string;
+  climate: string;
+  gravity: string;
+  terrain: string;
+  surface_water: string;
+  population: string;
+  residents?: string[];
+  films?: string[];
+  created: string;
+  edited: string;
+  url: string;
+}
+
+export interface PlanetTechResponce {
+  message: string;
+  result: PlanetTechResponceResult;
+}
+
+export interface PlanetTechResponceResult {
+  description: string;
+  properties: PlanetTechProperties;
+  uid: string;
 }
 
 export const getPlanetsControllers = (api: AxiosInstance) => ({
-  getPlanets: () => api.get<GetPlanetsResponse>('/planets')
+  getPlanets: () => api.get<GetPlanetsResponse>('/planets'),
+  getPlanet: (id: string) => api.get<PlanetTechResponce>(`/planets/${id}`)
 });
