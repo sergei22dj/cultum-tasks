@@ -18,8 +18,10 @@ import { ThunkDispatch } from '@md-store/helpers';
 type ListItem = Pick<Starship, 'id' | 'name'>;
 
 const Starships = () => {
+  // hooks
   const dispatch = useDispatch<ThunkDispatch>();
 
+  // store
   const { data, error, loading } = useSelector<
     RootStore,
     Pick<RootStore['api']['starships'], 'data' | 'error' | 'loading'>
@@ -29,6 +31,7 @@ const Starships = () => {
     loading: state.api.starships.loading
   }));
 
+  // data transformation
   const starshipsList = React.useMemo<ListItem[] | undefined>(
     () =>
       data?.results?.map(({ name, uid }) => ({

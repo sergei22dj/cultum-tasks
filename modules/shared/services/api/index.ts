@@ -1,8 +1,11 @@
 import axios from 'axios';
 // controllers
-import { getStarshipsControllers, getPlanetsControllers } from './controllers';
-import { getPlanetControllers } from './controllers/planet';
-import { getStarshipControllers } from './controllers/starship';
+import {
+  getPlanetControllers,
+  getPlanetsControllers,
+  getStarshipControllers,
+  getStarshipsControllers
+} from './controllers';
 
 export type CustomHeaders = { [key: string]: string };
 export type APIVariables = {
