@@ -14,10 +14,9 @@ export const Wrapper = styled.div`
 export const IWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 5px 10px;
+  padding: 5px 15px;
   margin: 0 auto;
-
-  max-width: ${({ theme }) => theme.dimensions.pageMaxWidth}px;
+  height: 60px;
 `;
 
 export const LWrapper = styled.div`
@@ -36,4 +35,9 @@ export const RWrapper = styled.div`
   justify-content: flex-end;
 
   ${({ theme }) => theme.templates.centerItems};
+`;
+
+export const Icon = styled.img`
+  height: 20px;
+  width: 20px;
 `;

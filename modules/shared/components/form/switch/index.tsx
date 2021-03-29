@@ -1,29 +1,33 @@
 import React from 'react';
-import { Checkbox, Button, Label, Text, Wrapper } from './views';
+// views
+import { Checkbox, Button, Label, Wrapper } from './views';
 
 interface Props {
   isOn?: boolean;
-  text?: string;
-  handleOnSwitchToggle?: () => unknown;
+  content?: React.ReactNode;
+  onChange?: (value: boolean) => unknown;
 }
 
-const Switch: React.FC<Props> = ({ isOn = false, text, handleOnSwitchToggle }) => {
+const Switch: React.FC<Props> = ({ isOn = false, content, onChange }) => {
   const [toggled, setToggled] = React.useState(isOn);
 
   const handleToggle = () => {
-    if (typeof handleOnSwitchToggle === 'function') {
-      handleOnSwitchToggle();
-    }
-    setToggled((prev) => !prev);
+    setToggled((prev) => {
+      onChange?.(!prev);
+
+      return !prev;
+    });
   };
+
+  React.useEffect(() => setToggled(isOn), [isOn]);
 
   return (
     <Wrapper toggled={toggled}>
       <Checkbox id={'switch'} type='checkbox' checked={toggled} onChange={handleToggle} />
       <Label htmlFor={'switch'}>
         <Button />
+        {content && content}
       </Label>
-      {text && <Text>{text.toUpperCase()}</Text>}
     </Wrapper>
   );
 };

@@ -1,27 +1,28 @@
 import * as React from 'react';
+// hooks
+import { useRouter } from 'next/router';
+// constants
+import { graphqlMenuItems, reduxMenuItems } from './constants';
 // view components
 import { Logo } from '@md-ui/logos/main';
 import { Switch } from '@md-shared/components/form/switch';
 import { MenuItem } from '@md-ui/menu-items/main';
 // views
-import { Wrapper, IWrapper, LWrapper, RWrapper } from './views';
-// hooks
-import { useDispatch, useSelector } from 'react-redux';
-// store
-import { setToggleAction } from '@md-store/modules/ui/header-toggle';
-// types
-import { RootStore } from '@md-store/index';
-// constants
-import { reduxMenuItems, graphqlMenuItems } from './constants';
+import { Icon, IWrapper, LWrapper, RWrapper, Wrapper } from './views';
+
+const SwitchIcons = () => (
+  <>
+    <Icon src={'/static/images/redux.svg'} alt='redux' />
+    <Icon src={'/static/images/graphql.svg'} alt='graphql' />
+  </>
+);
 
 const Header = () => {
-  const dispatch = useDispatch();
+  const router = useRouter();
 
-  const isToggled = useSelector<RootStore, RootStore['ui']['headerToggle']['toggled']>(
-    (state) => state.ui.headerToggle.toggled
-  );
+  const [toggled, setToggled] = React.useState(router.pathname.includes('redux'));
 
-  const handleOnSwitchToggle = () => dispatch(setToggleAction());
+  const onChange = (value: boolean): void => setToggled(value);
 
   return (
     <Wrapper>
@@ -30,10 +31,10 @@ const Header = () => {
           <Logo />
         </LWrapper>
         <RWrapper>
-          {(isToggled ? reduxMenuItems : graphqlMenuItems).map(({ l, h }) => (
+          {(toggled ? reduxMenuItems : graphqlMenuItems).map(({ l, h }) => (
             <MenuItem key={l} href={h} label={l} />
           ))}
-          <Switch isOn={isToggled} text='use redux' handleOnSwitchToggle={handleOnSwitchToggle} />
+          <Switch isOn={toggled} onChange={onChange} content={<SwitchIcons />} />
         </RWrapper>
       </IWrapper>
     </Wrapper>
