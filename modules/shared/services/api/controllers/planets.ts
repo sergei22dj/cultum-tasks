@@ -32,12 +32,12 @@ export interface PlanetTechProperties {
   url: string;
 }
 
-export interface PlanetTechResponce {
+export interface PlanetTechResponse {
   message: string;
-  result: PlanetTechResponceResult;
+  result: PlanetTechResponseResult;
 }
 
-export interface PlanetTechResponceResult {
+export interface PlanetTechResponseResult {
   description: string;
   properties: PlanetTechProperties;
   uid: string;
@@ -45,5 +45,5 @@ export interface PlanetTechResponceResult {
 
 export const getPlanetsControllers = (api: AxiosInstance) => ({
   getPlanets: () => api.get<GetPlanetsResponse>('/planets'),
-  getPlanet: (id: string) => api.get<PlanetTechResponce>(`/planets/${id}`)
+  getPlanet: (id: string) => api.get<PlanetTechResponse>(`/planets/${id}`)
 });

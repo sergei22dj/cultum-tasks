@@ -7,7 +7,7 @@ import {
   getRequestError
 } from '@md-shared/services/api/helpers';
 import { createAction, ThunkAction } from '@md-store/helpers';
-import { StarshipTechResponce, StarshipTechResult } from '@md-shared/services/api/controllers/starships';
+import { StarshipTechResponse, StarshipTechResult } from '@md-shared/services/api/controllers/starships';
 
 /* ------------- Types ------------- */
 
@@ -53,7 +53,7 @@ export const performAPIGetStarship = (
   id: string
 ): ThunkAction<
   typeof GET_STARSHIP_LOADING | typeof GET_STARSHIP_ERROR | typeof GET_STARSHIP_SUCCESS,
-  Promise<ClientSuccess<StarshipTechResponce> | ClientError<RequestError>>
+  Promise<ClientSuccess<StarshipTechResponse> | ClientError<RequestError>>
 > => async (dispatch, getState, createApi) => {
   const api = createApi();
 

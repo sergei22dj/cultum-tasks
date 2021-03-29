@@ -40,12 +40,12 @@ export interface StarshipTechResult {
   uid: string;
 }
 
-export interface StarshipTechResponce {
+export interface StarshipTechResponse {
   message: string;
   result: StarshipTechResult;
 }
 
 export const getStarshipsControllers = (api: AxiosInstance) => ({
   getStarships: () => api.get<GetStarshipsResponse>('/starships'),
-  getStarship: (id: string) => api.get<StarshipTechResponce>(`/starships/${id}`)
+  getStarship: (id: string) => api.get<StarshipTechResponse>(`/starships/${id}`)
 });
