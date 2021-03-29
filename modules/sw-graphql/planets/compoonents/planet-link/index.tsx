@@ -7,7 +7,7 @@ interface Props {
 }
 
 const PlanetLink: React.FC<Props> = ({ pId, children }) => (
-  <Link href='/planets/[id]' as={`/planets/${pId}`}>
+  <Link href='/graphql/planets/[id]' as={`/graphql/planets/${pId}`}>
     <a>{children}</a>
   </Link>
 );

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const PersonLink: React.FC<Props> = ({ pId, children }) => (
-  <Link href='/people/[id]' as={`/people/${pId}`}>
+  <Link href='/graphql/people/[id]' as={`/graphql/people/${pId}`}>
     <a>{children}</a>
   </Link>
 );

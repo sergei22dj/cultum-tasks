@@ -7,7 +7,7 @@ interface Props {
 }
 
 const StarshipLink: React.FC<Props> = ({ pId, children }) => (
-  <Link href='/starships/[id]' as={`/starships/${pId}`}>
+  <Link href='/graphql/starships/[id]' as={`/graphql/starships/${pId}`}>
     <a>{children}</a>
   </Link>
 );
