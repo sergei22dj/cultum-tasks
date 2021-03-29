@@ -47,7 +47,7 @@ const Starships = () => {
       <ContentLoader isLoading={loading} error={clientError(error)}>
         <Wrapper>
           {starshipsList?.map((starship) => (
-            <Card key={starship.id} name={starship.name} />
+            <Card key={starship.id} name={starship.name} id={starship.id} />
           ))}
         </Wrapper>
       </ContentLoader>

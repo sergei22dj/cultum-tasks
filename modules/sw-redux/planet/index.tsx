@@ -1,9 +1,13 @@
 import * as React from 'react';
 // view components
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-
-import { useSelector, useDispatch } from 'react-redux';
+import { PlanetInfo } from './components/planet-info';
+// hooks
+import { useSelector } from 'react-redux';
+// types
 import { RootStore } from 'store';
+// helpers
+import { clientError } from '@md-modules/shared/utils/errors';
 // views
 import {
   ContentWrapper,
@@ -13,10 +17,6 @@ import {
   PlanetName,
   Wrapper
 } from './views';
-import { clientError } from '@md-modules/shared/utils/errors';
-import { ThunkDispatch } from '@md-store/helpers';
-import * as API from '@md-store/modules/api';
-import { PlanetInfo } from './components/planet-info';
 
 interface PlanetInfoProps {
   label: string;
@@ -24,8 +24,7 @@ interface PlanetInfoProps {
 }
 
 const PlanetContainer = () => {
-  const dispatch = useDispatch<ThunkDispatch>();
-
+  // store
   const { data: planet, error, loading } = useSelector<
     RootStore,
     Pick<RootStore['api']['planet'], 'data' | 'error' | 'loading'>
@@ -35,23 +34,20 @@ const PlanetContainer = () => {
     loading: state.api.planet.loading
   }));
 
+  // data transformation
   const planetInfo = React.useMemo<PlanetInfoProps[]>(() => {
     if (!planet) {
       return [];
     }
 
     return [
-      { label: 'Diameter', value: planet.diameter ?? 'N/A' },
-      { label: 'Gravity', value: planet.gravity ?? 'N/A' },
-      { label: 'Orbital Period', value: planet.orbitalPeriod ?? 'N/A' },
-      { label: 'Population', value: planet.population ?? 'N/A' }
+      { label: 'Name', value: planet.properties.name ?? 'N/A' },
+      { label: 'Gravity', value: planet.properties.gravity ?? 'N/A' },
+      { label: 'Orbital Period', value: planet.properties.orbital_period ?? 'N/A' },
+      { label: 'Population', value: planet.properties.population ?? 'N/A' }
     ];
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [typeof planet === 'undefined']);
-
-  React.useEffect(() => {
-    dispatch(API.planet?.performAPIGetPlanet('6'));
-  }, [dispatch]);
+  }, [planet]);
 
   return (
     <ContentWrapper>
@@ -61,7 +57,7 @@ const PlanetContainer = () => {
             <img src='/static/images/planet.png' alt='planet' />
           </PlanetImgContainer>
           <PlanetDetailsContainer>
-            {planet && <PlanetName>{planet.name}</PlanetName>}
+            {planet && <PlanetName>{planet.properties.name}</PlanetName>}
             <PlanetInfoContainer>
               {planetInfo.map((i, idx) => (
                 <PlanetInfo key={idx} {...i} />

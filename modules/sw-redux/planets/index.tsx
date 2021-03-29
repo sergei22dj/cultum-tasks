@@ -14,6 +14,7 @@ import { clientError } from '@md-shared/services/api';
 type ListItem = Pick<Planet, 'id' | 'name'>;
 
 const Planets = () => {
+  // store
   const { data, error, loading } = useSelector<
     RootStore,
     Pick<RootStore['api']['planets'], 'data' | 'error' | 'loading'>
@@ -23,6 +24,7 @@ const Planets = () => {
     loading: state.api.planets.loading
   }));
 
+  // data transformation
   const planetsList = React.useMemo<ListItem[] | undefined>(
     () =>
       data?.results?.map(({ name, uid }) => ({

@@ -1,18 +1,13 @@
 import * as React from 'react';
 // view components
 import { MainLayout } from '@md-shared/layouts/main';
-
-// query
-// import { GET_PLANET_QUERY } from '@md-sw-planet/queries/planet';
-// types
-// import { GetServerSidePropsContext } from 'next';
-// import { GetPlanetResponse, GetPlanetVariables } from '@md-sw-planet/queries/planet/types';
-import { initializeStore } from 'lib/redux/initStore';
-import { ThunkDispatch } from '@md-store/helpers';
-
-import * as API from '@md-store/modules/api';
 import { PlanetContainer } from '@md-modules/sw-redux/planet';
-// libs
+// types
+import { GetServerSidePropsContext } from 'next';
+import { ThunkDispatch } from '@md-store/helpers';
+// store
+import * as API from '@md-store/modules/api';
+import { initializeStore } from 'lib/redux/initStore';
 
 const PlanetPage = () => (
   <MainLayout>
@@ -20,14 +15,14 @@ const PlanetPage = () => (
   </MainLayout>
 );
 
-export async function getServerSideProps() {
-  // context: GetServerSidePropsContext
-  // const { params } = context;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  if (!context.params?.id) return;
 
+  const id = context.params.id as string;
   const reduxStore = initializeStore();
   const dispatch = reduxStore.dispatch as ThunkDispatch;
 
-  await dispatch(API.planets.performAPIGetPlanets());
+  await dispatch(API.planet.performAPIGetPlanet(id));
 
   return { props: { initialReduxState: reduxStore.getState() } };
 }

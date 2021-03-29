@@ -4,8 +4,8 @@ import { Planets } from '@md-sw-redux/planets';
 import { MainLayout } from '@md-shared/layouts/main';
 // store
 import { initializeStore } from 'lib/redux/initStore';
-// types
 import * as API from '@md-store/modules/api';
+// types
 import { ThunkDispatch } from '@md-store/helpers';
 
 const PlanetsPage = () => (

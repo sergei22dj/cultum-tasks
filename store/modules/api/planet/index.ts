@@ -7,7 +7,7 @@ import {
   getRequestError
 } from '@md-shared/services/api/helpers';
 import { createAction, ThunkAction } from '@md-store/helpers';
-import { Planet } from '@md-shared/services/api/controllers/planet';
+import { PlanetTechResponce, PlanetTechResponceResult } from '@md-shared/services/api/controllers/planet';
 
 /* ------------- Types ------------- */
 
@@ -25,7 +25,9 @@ export const setGetPlanetErrorAction = createAction<typeof GET_PLANET_ERROR, str
 
 export type SetGetPlanetErrorAction = ReturnType<typeof setGetPlanetErrorAction>;
 
-export const setGetPlanetSuccessAction = createAction<typeof GET_PLANET_SUCCESS, Planet>(GET_PLANET_SUCCESS);
+export const setGetPlanetSuccessAction = createAction<typeof GET_PLANET_SUCCESS, PlanetTechResponceResult>(
+  GET_PLANET_SUCCESS
+);
 
 export type SetGetPlanetSuccessAction = ReturnType<typeof setGetPlanetSuccessAction>;
 
@@ -36,7 +38,7 @@ type Actions = SetGetPlanetLoadingAction | SetGetPlanetErrorAction | SetGetPlane
 export type InitialState = {
   loading: boolean;
   error: null | string;
-  data: Planet | null;
+  data: PlanetTechResponceResult | null;
 };
 
 export const INITIAL_STATE: InitialState = {
@@ -51,7 +53,7 @@ export const performAPIGetPlanet = (
   id: string
 ): ThunkAction<
   typeof GET_PLANET_LOADING | typeof GET_PLANET_ERROR | typeof GET_PLANET_SUCCESS,
-  Promise<ClientSuccess<Planet> | ClientError<RequestError>>
+  Promise<ClientSuccess<PlanetTechResponce> | ClientError<RequestError>>
 > => async (dispatch, getState, createApi) => {
   const api = createApi();
 
@@ -60,7 +62,7 @@ export const performAPIGetPlanet = (
 
     const { data } = await api.getPlanet(id);
 
-    dispatch(setGetPlanetSuccessAction(data));
+    dispatch(setGetPlanetSuccessAction(data?.result));
 
     return clientSuccess(data);
   } catch (error) {

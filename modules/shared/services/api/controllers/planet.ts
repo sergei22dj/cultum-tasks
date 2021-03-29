@@ -1,22 +1,32 @@
 import { AxiosInstance } from 'axios';
-
-export interface Planet {
+export interface PlanetTech {
   name: string;
-  rotationPeriod: string;
-  orbitalPeriod: string;
+  rotation_period: string;
+  orbital_period: string;
   diameter: string;
   climate: string;
   gravity: string;
   terrain: string;
-  surfaceWater: string;
+  surface_water: string;
   population: string;
-  residents: string[];
-  films: string[];
+  residents?: string[];
+  films?: string[];
   created: string;
   edited: string;
   url: string;
 }
 
+export interface PlanetTechResponce {
+  message: string;
+  result: PlanetTechResponceResult;
+}
+
+export interface PlanetTechResponceResult {
+  description: string;
+  properties: PlanetTech;
+  uid: string;
+}
+
 export const getPlanetControllers = (api: AxiosInstance) => ({
-  getPlanet: (id: string) => api.get<Planet>(`/planets/${id}`)
+  getPlanet: (id: string) => api.get<PlanetTechResponce>(`/planets/${id}`)
 });
