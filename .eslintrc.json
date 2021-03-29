@@ -50,5 +50,8 @@
         "allow": ["warn", "error"]
       }
     ]
+  },
+  "globals": {
+    "localStorage": true
   }
 }
