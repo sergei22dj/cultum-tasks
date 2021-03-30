@@ -21,7 +21,6 @@ import 'normalize.css/normalize.css';
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { getToken } = cookiesManager();
   const token: string | undefined = pageProps.serverToken ?? getToken();
-
   const apolloClient = useApollo(pageProps.initialApolloState, token);
   const store = useStore(pageProps.initialReduxState);
 

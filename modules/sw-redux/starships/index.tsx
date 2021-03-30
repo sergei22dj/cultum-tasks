@@ -18,17 +18,20 @@ import { ThunkDispatch } from '@md-store/helpers';
 type ListItem = Pick<Starship, 'id' | 'name'>;
 
 const Starships = () => {
+  // hooks
   const dispatch = useDispatch<ThunkDispatch>();
 
+  // store
   const { data, error, loading } = useSelector<
     RootStore,
-    Pick<RootStore['api']['starships'], 'data' | 'error' | 'loading'>
+    Pick<RootStore['api']['starships']['getStarships'], 'data' | 'error' | 'loading'>
   >((state) => ({
-    data: state.api.starships.data,
-    error: state.api.starships.error,
-    loading: state.api.starships.loading
+    data: state.api.starships.getStarships.data,
+    error: state.api.starships.getStarships.error,
+    loading: state.api.starships.getStarships.loading
   }));
 
+  // data transformation
   const starshipsList = React.useMemo<ListItem[] | undefined>(
     () =>
       data?.results?.map(({ name, uid }) => ({
@@ -39,7 +42,7 @@ const Starships = () => {
   );
 
   React.useEffect(() => {
-    dispatch(API.starships?.performAPIGetStarships());
+    dispatch(API.starships.getStarships.performAPIGetStarships());
   }, [dispatch]);
 
   return (
@@ -47,7 +50,7 @@ const Starships = () => {
       <ContentLoader isLoading={loading} error={clientError(error)}>
         <Wrapper>
           {starshipsList?.map((starship) => (
-            <Card key={starship.id} name={starship.name} />
+            <Card key={starship.id} name={starship.name} id={starship.id} />
           ))}
         </Wrapper>
       </ContentLoader>
