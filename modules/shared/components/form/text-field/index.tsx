@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 // components
 import { ErrorMessage } from '@md-shared/components/form/error-message';
 // types
@@ -6,12 +6,10 @@ import { StyledCss } from '@md-modules/shared/types/helpers';
 // views
 import { TextInput, IconWrapper, InnerWrapper, Wrapper, Label, InputStyle, WrapperStyle } from './views';
 
-interface TextFieldProps {
+export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  value?: string;
   errorText?: string;
   isInvalid?: boolean;
-  placeholder?: string;
   inputStyle?: InputStyle;
   icon?: React.ReactElement;
   wrapperStyle?: WrapperStyle;

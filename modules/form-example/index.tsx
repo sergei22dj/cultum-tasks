@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { css } from 'styled-components';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 // components
 import { schema } from './validation-schema';
 import { ContentWrapper } from '@md-shared/views/common';
-import { TextField } from '@md-modules/shared/components/form/text-field';
+import { ControlledTextField } from '@md-modules/shared/components/form/controlled/text-field';
 // views
 import { FormWrapper, Submit } from './views';
 
@@ -23,53 +23,49 @@ const LABEL_OVERRIDES = css`
 `;
 
 const FormExample = () => {
-  const { control, errors, handleSubmit } = useForm({
+  const { control, formState, handleSubmit } = useForm({
     mode: 'onBlur',
     resolver: yupResolver(schema)
   });
 
-  const onSubmit = (data: FormData) => window.alert(data);
-
+  const onSubmit = (data: FormData) => window.alert(JSON.stringify(data));
   return (
     <ContentWrapper>
       <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-        <Controller
+        <ControlledTextField
           control={control}
           defaultValue=''
           name='name'
-          errorText={errors?.name?.message}
-          isInvalid={!!errors?.name}
+          errorText={formState.errors?.name?.message}
+          isInvalid={!!formState.errors?.name}
           label='Name'
           wrapperStyle={WRAPPER_STYLE}
           placeholder={'Enter name here...'}
           labelOverrides={LABEL_OVERRIDES}
-          as={<TextField />}
         />
 
-        <Controller
+        <ControlledTextField
           control={control}
           defaultValue=''
           name='email'
-          errorText={errors?.email?.message}
-          isInvalid={!!errors?.email}
+          errorText={formState.errors?.email?.message}
+          isInvalid={!!formState.errors?.email}
           label='E-mail'
           wrapperStyle={WRAPPER_STYLE}
           placeholder={'Enter e-mail here...'}
           labelOverrides={LABEL_OVERRIDES}
-          as={<TextField />}
         />
 
-        <Controller
+        <ControlledTextField
           control={control}
           defaultValue=''
           name='phoneNumber'
-          errorText={errors?.phoneNumber?.message}
-          isInvalid={!!errors?.phoneNumber}
+          errorText={formState.errors?.phoneNumber?.message}
+          isInvalid={!!formState.errors?.phoneNumber}
           label='Phone number'
           wrapperStyle={WRAPPER_STYLE}
           placeholder={'Enter phone number here...'}
           labelOverrides={LABEL_OVERRIDES}
-          as={<TextField />}
         />
         <Submit type='submit' value='Submit' />
       </FormWrapper>

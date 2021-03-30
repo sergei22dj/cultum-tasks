@@ -5,7 +5,7 @@ export const schema = yup.object().shape({
   email: yup.string().email("E-mail isn't valid").required('Required'),
   phoneNumber: yup
     .string()
-    .matches(/^(?:[+].*\d|\d)$/, "Number should start with '+' and contain only digits")
+    .matches(/^\d+$/, 'Number should contain only digits')
     .min(11, 'Phone number is too short')
     .max(16, 'Phone number is too long')
     .required('Required')
