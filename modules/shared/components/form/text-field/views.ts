@@ -10,7 +10,6 @@ export type WrapperStyle = Margin;
 
 export const TextInput = styled.input<{
   isValid?: boolean;
-  withIcon: boolean;
   inputStyle?: InputStyle;
 }>`
   width: 100%;
@@ -21,22 +20,11 @@ export const TextInput = styled.input<{
   border: 1px solid ${({ theme }) => theme.colors.gray400};
   border-radius: 4px;
   border-color: ${({ isValid, theme }) => (isValid ? theme.colors.gray400 : theme.colors.red500)};
-
-  ${({ withIcon }) => withIcon && 'padding-right: 40px'};
 `;
 
 export const Wrapper = styled.div<{ wrapperStyle?: WrapperStyle }>`
   flex: 1;
   ${({ wrapperStyle }) => wrapperStyle && getMarginStyle('wrapperStyle')};
-`;
-
-export const IconWrapper = styled.div`
-  position: absolute;
-  right: 10px;
-`;
-
-export const InnerWrapper = styled.div`
-  justify-content: center;
 `;
 
 export const Label = styled.div<{
