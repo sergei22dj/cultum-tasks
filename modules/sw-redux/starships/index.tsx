@@ -1,6 +1,6 @@
 import * as React from 'react';
 // view components
-import { Card } from './compoonents/card';
+import { Card } from './components/card';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
 // views
 import { ContentWrapper, Wrapper } from '@md-shared/views/common';

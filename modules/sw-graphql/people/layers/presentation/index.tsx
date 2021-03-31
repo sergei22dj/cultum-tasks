@@ -1,7 +1,7 @@
 import * as React from 'react';
 // view components
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { Card } from '@md-sw-people/compoonents/card';
+import { Card } from '@md-modules/sw-graphql/people/components/card';
 // context
 import { PeopleAPIContext } from '@md-sw-people/layers/api/people';
 import { PeopleBLContext } from '@md-sw-people/layers/business';

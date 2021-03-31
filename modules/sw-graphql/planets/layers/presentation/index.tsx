@@ -1,7 +1,7 @@
 import * as React from 'react';
 // view components
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { Card } from '@md-sw-planets/compoonents/card';
+import { Card } from '@md-modules/sw-graphql/planets/components/card';
 // context
 import { PlanetsAPIContext } from '@md-sw-planets/layers/api/planets';
 import { PlanetsBLContext } from '@md-sw-planets/layers/business';
