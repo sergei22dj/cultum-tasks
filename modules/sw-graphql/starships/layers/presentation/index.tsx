@@ -1,7 +1,7 @@
 import * as React from 'react';
 // view components
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { Card } from '@md-sw-starships/compoonents/card';
+import { Card } from '@md-modules/sw-graphql/starships/components/card';
 // context
 import { StarshipsAPIContext } from '@md-sw-starships/layers/api/starships';
 import { StarshipsBLContext } from '@md-sw-starships/layers/business';
