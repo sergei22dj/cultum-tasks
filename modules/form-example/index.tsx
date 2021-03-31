@@ -1,73 +1,74 @@
 import * as React from 'react';
-import { css } from 'styled-components';
-import { yupResolver } from '@hookform/resolvers/yup';
+// libs
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 // components
+import { FormInput, FormSelect } from '@md-shared/components/form/index';
+// other
 import { schema } from './validation-schema';
-import { ContentWrapper } from '@md-shared/views/common';
-import { ControlledTextField } from '@md-modules/shared/components/form/controlled/text-field';
 // views
-import { FormWrapper, Submit } from './views';
-
-const WRAPPER_STYLE = { mb: 32 };
+import { ContentWrapper } from '@md-shared/views/common';
+import { FormWrapper, Button } from './views';
 
 interface FormData {
   name: string;
   email: string;
   phoneNumber: string;
+  fruit: string;
+  fruits: string | string[];
 }
 
-const LABEL_OVERRIDES = css`
-  color: ${({ theme }) => theme.colors.white};
-  font-size: 16px;
-`;
+const OPTIONS = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+];
 
 const FormExample = () => {
-  const { control, formState, handleSubmit } = useForm({
-    mode: 'onBlur',
+  const { control, formState, handleSubmit } = useForm<FormData>({
+    defaultValues: { fruits: ['vanilla', 'strawberry'] },
     resolver: yupResolver(schema)
   });
 
   const onSubmit = (data: FormData) => window.alert(JSON.stringify(data));
+
   return (
     <ContentWrapper>
       <FormWrapper onSubmit={handleSubmit(onSubmit)}>
-        <ControlledTextField
+        <FormInput
           control={control}
-          defaultValue=''
-          name='name'
           errorText={formState.errors?.name?.message}
           isInvalid={!!formState.errors?.name}
           label='Name'
-          wrapperStyle={WRAPPER_STYLE}
-          placeholder={'Enter name here...'}
-          labelOverrides={LABEL_OVERRIDES}
+          name='name'
+          placeholder='Enter name...'
+          multiple
         />
-
-        <ControlledTextField
+        <FormInput
           control={control}
-          defaultValue=''
-          name='email'
           errorText={formState.errors?.email?.message}
           isInvalid={!!formState.errors?.email}
-          label='E-mail'
-          wrapperStyle={WRAPPER_STYLE}
-          placeholder={'Enter e-mail here...'}
-          labelOverrides={LABEL_OVERRIDES}
+          label='Email'
+          name='email'
         />
-
-        <ControlledTextField
+        <FormInput
           control={control}
-          defaultValue=''
-          name='phoneNumber'
           errorText={formState.errors?.phoneNumber?.message}
           isInvalid={!!formState.errors?.phoneNumber}
           label='Phone number'
-          wrapperStyle={WRAPPER_STYLE}
-          placeholder={'Enter phone number here...'}
-          labelOverrides={LABEL_OVERRIDES}
+          name='phoneNumber'
         />
-        <Submit type='submit' value='Submit' />
+        <FormSelect control={control} error={formState.errors?.fruit} label='Fruit' name='fruit' options={OPTIONS} />
+        <FormSelect
+          control={control}
+          error={formState.errors?.fruits}
+          isMulti
+          label='Fruits'
+          name='fruits'
+          options={OPTIONS}
+          placeholder='Select fruits...'
+        />
+        <Button type='submit'>Submit Form</Button>
       </FormWrapper>
     </ContentWrapper>
   );
