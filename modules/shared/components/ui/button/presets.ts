@@ -21,14 +21,14 @@ export const buttonPresets = {
     font-size: 18px;
     background-color: ${({ theme }) => theme.colors.gray600};
     border-radius: 3px;
-    border: 1px solid ${({ theme }) => theme.colors.yellow600};
+    border: 1px solid ${({ theme }) => theme.colors.yellow400};
     color: #fff;
     outline: none;
     transition: background-color 0.2s linear;
     cursor: pointer;
 
     &:hover {
-      background-color: ${({ theme }) => theme.colors.yellow600};
+      background-color: ${({ theme }) => theme.colors.yellow400};
     }
 
     :active {
