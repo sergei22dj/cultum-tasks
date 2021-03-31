@@ -33,6 +33,7 @@ export const LWrapper = styled.div`
 export const RWrapper = styled.div`
   flex: 2;
   justify-content: flex-end;
+  color: white;
 
   ${({ theme }) => theme.templates.centerItems};
 `;

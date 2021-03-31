@@ -21,7 +21,6 @@ export const CardImg = styled.img`
 
 export const CardFooter = styled.div`
   display: flex;
-  height: 50px;
   align-items: center;
   justify-content: space-between;
   background-color: ${({ theme }) => theme.colors.gray500};

@@ -20,7 +20,7 @@ export const Circle = styled.div<{ index?: number }>`
     margin: 0 auto;
     width: 15%;
     height: 15%;
-    background-color: ${({ theme }) => theme.colors.green300};
+    background-color: ${({ theme }) => theme.colors.yellow400};
     border-radius: 100%;
     -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
     animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;

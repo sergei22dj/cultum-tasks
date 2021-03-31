@@ -1,17 +1,19 @@
 import { DefaultTheme, css } from 'styled-components';
 
 export const colors = {
+  // yellow
+  yellow400: '#fde621',
   // blue
   blue400: '#0070f3',
   // green
-  green300: '#2ab736',
   green200: '#87cc43',
-  // yellow
-  yellow600: '#ebc934',
+  green300: '#2ab736',
   // gray
   gray400: '#272d3d',
   gray500: '#21293d',
   gray600: '#191e2d',
+  // red
+  red500: '#ff294b',
   // other
   white: '#fff'
 };
