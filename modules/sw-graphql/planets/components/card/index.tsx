@@ -1,6 +1,8 @@
 import * as React from 'react';
+// components
+import { Button } from '@md-ui/button';
 // views
-import { CardWrapper, CardImgWrapper, CardImg, CardFooter, CardFooterTitle, ViewButton } from './views';
+import { CardWrapper, CardImgWrapper, CardImg, CardFooter, CardFooterTitle } from './views';
 // view components
 import { PlanetLink } from '../planet-link';
 
@@ -19,7 +21,7 @@ const Card: React.FC<Props> = ({ id, name }) => (
         <CardFooterTitle>{name}</CardFooterTitle>
       </PlanetLink>
       <PlanetLink pId={id}>
-        <ViewButton>Details</ViewButton>
+        <Button preset='details'>Details</Button>
       </PlanetLink>
     </CardFooter>
   </CardWrapper>

@@ -16,9 +16,9 @@ export const buttonPresets = {
     }
   `,
 
-  formSubmit: css`
+  default: css`
     padding: 10px 20px;
-    font-size: 24px;
+    font-size: 18px;
     background-color: ${({ theme }) => theme.colors.gray600};
     border-radius: 3px;
     border: 1px solid ${({ theme }) => theme.colors.yellow600};
@@ -29,6 +29,10 @@ export const buttonPresets = {
 
     &:hover {
       background-color: ${({ theme }) => theme.colors.yellow600};
+    }
+
+    :active {
+      opacity: 0.9;
     }
   `
 };

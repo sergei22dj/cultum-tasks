@@ -1,21 +1,28 @@
 import * as React from 'react';
+// components
+import { Loader } from '@md-ui/loaders/loader';
 // types
 import { ButtonPresets } from './presets';
 // views
-import { InnerWrapper, Wrapper } from './views';
+import { ButtonStyle, InnerWrapper, LoaderWrapper, Wrapper } from './views';
 
-export interface ButtonProps {
-  children?: React.ReactNode;
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  buttonStyle?: ButtonStyle;
   isLoading?: boolean;
-  loader?: React.ReactNode;
   preset?: ButtonPresets;
 }
 
-export const Button: React.FC<ButtonProps> = ({ preset = 'formSubmit', children, isLoading, loader, ...rest }) => (
+const Button: React.FC<ButtonProps> = ({ preset = 'default', children, isLoading, ...rest }) => (
   <Wrapper preset={preset} {...rest}>
     <InnerWrapper>
       {children}
-      {isLoading && loader}
+      {isLoading && (
+        <LoaderWrapper>
+          <Loader />
+        </LoaderWrapper>
+      )}
     </InnerWrapper>
   </Wrapper>
 );
+
+export { Button };

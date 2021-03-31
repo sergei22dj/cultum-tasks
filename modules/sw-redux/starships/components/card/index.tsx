@@ -1,8 +1,10 @@
-import { ViewButton } from '@md-modules/sw-graphql/starships/components/card/views';
 import * as React from 'react';
-import { StarshipLink } from '../starship-link';
+// components
+import { Button } from '@md-ui/button';
 // views
 import { CardWrapper, CardImgWrapper, CardImg, CardFooter, CardFooterTitle } from './views';
+// view components
+import { StarshipLink } from '../starship-link';
 
 interface Props {
   name: string;
@@ -19,7 +21,7 @@ const Card: React.FC<Props> = ({ name, id }) => (
         <CardFooterTitle>{name}</CardFooterTitle>
       </StarshipLink>
       <StarshipLink pId={id}>
-        <ViewButton>Details</ViewButton>
+        <Button preset='details'>Details</Button>
       </StarshipLink>
     </CardFooter>
   </CardWrapper>

@@ -1,22 +1,48 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 // local
-import { StyledCss } from '@md-shared/types/helpers';
+import { Margin } from '@md-shared/types/css';
 import { ButtonPresets, buttonPresets } from './presets';
+import { getMarginStyle } from '@md-shared/helpers/styled';
+
+export interface WrapperStyle {
+  height?: string;
+  width?: string;
+}
+
+export type ButtonStyle = WrapperStyle & Margin;
 
 export const Wrapper = styled.button<{
-  overrides?: StyledCss;
+  buttonStyle?: ButtonStyle;
   preset?: ButtonPresets;
-  disabled?: boolean | null;
 }>`
   position: relative;
 
+  ${({ buttonStyle }) =>
+    buttonStyle?.width &&
+    css`
+      width: ${buttonStyle.width};
+    `};
+
+  ${({ buttonStyle }) =>
+    buttonStyle?.height &&
+    css`
+      height: ${buttonStyle.height};
+    `};
+
+  ${({ theme }) => theme.templates.centerContent};
   ${({ preset }) => preset && buttonPresets[preset]};
-  ${({ overrides }) => overrides && overrides};
+  ${({ buttonStyle }) => buttonStyle && getMarginStyle('buttonStyle')};
 `;
 
 export const InnerWrapper = styled.div`
-  position: relative;
+  align-content: center;
   display: flex;
   flex-direction: row;
-  align-content: center;
+  position: relative;
+`;
+
+export const LoaderWrapper = styled.div`
+  height: 30px;
+  margin-left: 8px;
+  width: 30px;
 `;
