@@ -7,8 +7,8 @@ import { FormInput, FormSelect } from '@md-shared/components/form/index';
 // other
 import { schema } from './validation-schema';
 // views
+import { Form, Button } from './views';
 import { ContentWrapper } from '@md-shared/views/common';
-import { FormWrapper, Button } from './views';
 
 interface FormData {
   name: string;
@@ -34,30 +34,16 @@ const FormExample = () => {
 
   return (
     <ContentWrapper>
-      <FormWrapper onSubmit={handleSubmit(onSubmit)}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           control={control}
-          errorText={formState.errors?.name?.message}
-          isInvalid={!!formState.errors?.name}
+          error={formState.errors?.name}
           label='Name'
           name='name'
           placeholder='Enter name...'
-          multiple
         />
-        <FormInput
-          control={control}
-          errorText={formState.errors?.email?.message}
-          isInvalid={!!formState.errors?.email}
-          label='Email'
-          name='email'
-        />
-        <FormInput
-          control={control}
-          errorText={formState.errors?.phoneNumber?.message}
-          isInvalid={!!formState.errors?.phoneNumber}
-          label='Phone number'
-          name='phoneNumber'
-        />
+        <FormInput control={control} error={formState.errors?.email} label='Email' name='email' />
+        <FormInput control={control} error={formState.errors?.phoneNumber} label='Phone number' name='phoneNumber' />
         <FormSelect control={control} error={formState.errors?.fruit} label='Fruit' name='fruit' options={OPTIONS} />
         <FormSelect
           control={control}
@@ -66,10 +52,9 @@ const FormExample = () => {
           label='Fruits'
           name='fruits'
           options={OPTIONS}
-          placeholder='Select fruits...'
         />
         <Button type='submit'>Submit Form</Button>
-      </FormWrapper>
+      </Form>
     </ContentWrapper>
   );
 };

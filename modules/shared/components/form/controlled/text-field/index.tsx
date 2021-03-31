@@ -11,35 +11,18 @@ const WRAPPER_STYLE = { mb: 16 };
 export interface FormTextFieldProps extends TextFieldProps {
   control: Control;
   error?: FieldError;
-  formatter?: (oldValue: string, newValue: string) => string;
   handleOnBlur?: () => void;
-  handleOnChange?: (value?: string) => void;
+  handleOnChange?: () => void;
   name: string;
 }
 
-interface HandleOnChangeTextProps {
-  text: string;
-  formValue: string;
-  formEventHandler: (...event: any[]) => void;
-}
-
-const FormInput: React.FC<FormTextFieldProps> = ({
-  control,
-  error,
-  formatter,
-  handleOnBlur,
-  handleOnChange,
-  name,
-  ...rest
-}) => {
-  const handleOnChangeText = ({ text, formValue, formEventHandler }: HandleOnChangeTextProps) => {
-    const value = formatter ? formatter(formValue, text) : text;
-
-    formEventHandler(value);
-    isFunction(handleOnChange) && handleOnChange(value);
+const FormInput: React.FC<FormTextFieldProps> = ({ control, error, handleOnBlur, handleOnChange, name, ...rest }) => {
+  const handleOnChangeText = (text: string, formEventHandler: (value: string) => void): void => {
+    formEventHandler(text);
+    isFunction(handleOnChange) && handleOnChange();
   };
 
-  const handleOnFieldBlur = (formEventHandler: () => void) => {
+  const handleOnFieldBlur = (formEventHandler: () => void): void => {
     formEventHandler();
     isFunction(handleOnBlur) && handleOnBlur();
   };
@@ -52,9 +35,9 @@ const FormInput: React.FC<FormTextFieldProps> = ({
       render={({ onChange, onBlur, value }) => {
         return (
           <TextField
-            isInvalid={!!error}
+            errorText={error?.message}
             onBlur={() => handleOnFieldBlur(onBlur)}
-            onChange={(e) => handleOnChangeText({ text: e.target.value, formValue: value, formEventHandler: onChange })}
+            onChange={(e) => handleOnChangeText(e.target.value, onChange)}
             value={value}
             wrapperStyle={WRAPPER_STYLE}
             {...rest}
