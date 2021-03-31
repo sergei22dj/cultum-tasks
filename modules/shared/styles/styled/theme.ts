@@ -2,7 +2,7 @@ import { DefaultTheme, css } from 'styled-components';
 
 export const colors = {
   // yellow
-  yellow400: '#fde621',
+  yellow400: '#e3ce0e',
   // blue
   blue400: '#0070f3',
   // green

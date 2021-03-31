@@ -14,6 +14,7 @@ export type ButtonStyle = WrapperStyle & Margin;
 export const Wrapper = styled.button<{
   buttonStyle?: ButtonStyle;
   preset?: ButtonPresets;
+  isLoading: boolean;
 }>`
   position: relative;
 
@@ -32,6 +33,14 @@ export const Wrapper = styled.button<{
   ${({ theme }) => theme.templates.centerContent};
   ${({ preset }) => preset && buttonPresets[preset]};
   ${({ buttonStyle }) => buttonStyle && getMarginStyle('buttonStyle')};
+
+  ${({ isLoading }) =>
+    isLoading &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.gray600};
+      }
+    `}
 `;
 
 export const InnerWrapper = styled.div`
@@ -42,7 +51,10 @@ export const InnerWrapper = styled.div`
 `;
 
 export const LoaderWrapper = styled.div`
-  height: 30px;
+  & > div {
+    height: 24px;
+    width: 24px;
+  }
+
   margin-left: 8px;
-  width: 30px;
 `;

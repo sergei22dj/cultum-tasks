@@ -3,11 +3,12 @@ import * as React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // components
+import { Button } from '@md-ui/button';
 import { FormInput, FormSelect } from '@md-shared/components/form/index';
 // other
 import { schema } from './validation-schema';
 // views
-import { Form, Button } from './views';
+import { ButtonWrapper, Form } from './views';
 import { ContentWrapper } from '@md-shared/views/common';
 
 interface FormData {
@@ -23,6 +24,10 @@ const OPTIONS = [
   { value: 'strawberry', label: 'Strawberry' },
   { value: 'vanilla', label: 'Vanilla' }
 ];
+
+const BUTTON_STYLE = {
+  width: '150px'
+};
 
 const FormExample = () => {
   const { control, formState, handleSubmit } = useForm<FormData>({
@@ -53,7 +58,12 @@ const FormExample = () => {
           name='fruits'
           options={OPTIONS}
         />
-        <Button type='submit'>Submit Form</Button>
+
+        <ButtonWrapper>
+          <Button type='submit' buttonStyle={BUTTON_STYLE}>
+            Submit Form
+          </Button>
+        </ButtonWrapper>
       </Form>
     </ContentWrapper>
   );
