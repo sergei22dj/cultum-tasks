@@ -1,14 +1,15 @@
 import * as React from 'react';
-// local
+// libs
 import { Control, Controller, FieldError } from 'react-hook-form';
-import { TextFieldProps } from '@md-shared/components/form/text-field';
-import { TextField } from '@md-modules/shared/components/form/text-field';
+// components
+import { TextField, TextFieldProps } from '@md-shared/components/form/text-field';
+// utils
+import isFunction from 'lodash/isFunction';
 
-const WRAPPER_STYLE = { mb: 12 };
+const WRAPPER_STYLE = { mb: 16 };
 
 export interface FormTextFieldProps extends TextFieldProps {
   control: Control;
-  defaultValue?: string;
   error?: FieldError;
   formatter?: (oldValue: string, newValue: string) => string;
   handleOnBlur?: () => void;
@@ -22,9 +23,8 @@ interface HandleOnChangeTextProps {
   formEventHandler: (...event: any[]) => void;
 }
 
-const ControlledTextField: React.FC<FormTextFieldProps> = ({
+const FormInput: React.FC<FormTextFieldProps> = ({
   control,
-  defaultValue = '',
   error,
   formatter,
   handleOnBlur,
@@ -36,33 +36,27 @@ const ControlledTextField: React.FC<FormTextFieldProps> = ({
     const value = formatter ? formatter(formValue, text) : text;
 
     formEventHandler(value);
-
-    if (typeof handleOnChange === 'function') {
-      handleOnChange(value);
-    }
+    isFunction(handleOnChange) && handleOnChange(value);
   };
 
   const handleOnFieldBlur = (formEventHandler: () => void) => {
     formEventHandler();
-
-    if (typeof handleOnBlur === 'function') {
-      handleOnBlur();
-    }
+    isFunction(handleOnBlur) && handleOnBlur();
   };
 
   return (
     <Controller
       control={control}
-      defaultValue={defaultValue}
+      defaultValue=''
       name={name}
       render={({ onChange, onBlur, value }) => {
         return (
           <TextField
             isInvalid={!!error}
-            value={value}
-            wrapperStyle={WRAPPER_STYLE}
             onBlur={() => handleOnFieldBlur(onBlur)}
             onChange={(e) => handleOnChangeText({ text: e.target.value, formValue: value, formEventHandler: onChange })}
+            value={value}
+            wrapperStyle={WRAPPER_STYLE}
             {...rest}
           />
         );
@@ -71,4 +65,4 @@ const ControlledTextField: React.FC<FormTextFieldProps> = ({
   );
 };
 
-export { ControlledTextField };
+export { FormInput };

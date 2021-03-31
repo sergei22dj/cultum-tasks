@@ -15,7 +15,7 @@ export const Label = styled.div`
 
 export const Wrapper = styled.div`
   position: relative;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 `;
 
 export const reactSelectTheme = {

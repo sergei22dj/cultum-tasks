@@ -1,29 +1,32 @@
-import React, { InputHTMLAttributes } from 'react';
+import * as React from 'react';
 // components
 import { ErrorMessage } from '@md-shared/components/form/error-message';
-// types
-import { StyledCss } from '@md-modules/shared/types/helpers';
 // views
 import { TextInput, Wrapper, Label, InputStyle, WrapperStyle } from './views';
 
-export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   errorText?: string;
   isInvalid?: boolean;
   inputStyle?: InputStyle;
   wrapperStyle?: WrapperStyle;
-  labelOverrides?: StyledCss;
 }
 
-export function TextField(props: TextFieldProps) {
-  const { label, errorText, placeholder, wrapperStyle, labelOverrides, isInvalid = false, ...rest } = props;
-
+const TextField: React.FC<TextFieldProps> = ({
+  label,
+  errorText,
+  placeholder,
+  wrapperStyle,
+  isInvalid = false,
+  ...rest
+}) => {
   return (
     <Wrapper wrapperStyle={wrapperStyle}>
-      {label && <Label overrides={labelOverrides}>{label}</Label>}
-
+      {label && <Label>{label}</Label>}
       <TextInput placeholder={placeholder} isValid={!isInvalid} {...rest} />
       <ErrorMessage errorText={errorText} />
     </Wrapper>
   );
-}
+};
+
+export { TextField };

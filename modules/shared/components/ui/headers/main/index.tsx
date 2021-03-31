@@ -31,7 +31,7 @@ const Header = () => {
           <Logo />
         </LWrapper>
         <RWrapper>
-          <MenuItem href='/form' label='Form' />
+          <MenuItem href='/form' label='Form' /> |
           {(toggled ? reduxMenuItems : graphqlMenuItems).map(({ l, h }) => (
             <MenuItem key={l} href={h} label={l} />
           ))}
