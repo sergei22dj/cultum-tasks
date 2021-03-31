@@ -1,7 +1,8 @@
 import * as React from 'react';
+// types
+import { ButtonPresets } from './presets';
 // views
 import { InnerWrapper, Wrapper } from './views';
-import { ButtonPresets } from './presets';
 
 export interface ButtonProps {
   children?: React.ReactNode;
