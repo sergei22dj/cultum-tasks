@@ -1,4 +1,4 @@
-import { ViewButton } from '@md-modules/sw-graphql/starships/compoonents/card/views';
+import { ViewButton } from '@md-modules/sw-graphql/starships/components/card/views';
 import * as React from 'react';
 import { StarshipLink } from '../starship-link';
 // views
