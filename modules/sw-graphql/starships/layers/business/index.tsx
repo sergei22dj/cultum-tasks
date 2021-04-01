@@ -4,7 +4,7 @@ import { StarshipsAPIContext } from '@md-sw-starships/layers/api/starships';
 // types
 import { Starship } from '@md-shared/types/starship';
 
-type ListItem = Pick<Starship, 'id' | 'name'>;
+type ListItem = Pick<Starship, 'id' | 'name'> & { image: string };
 
 interface Context {
   starshipsList: ListItem[];
@@ -21,8 +21,9 @@ const StarshipsBLContextProvider: React.FC = ({ children }) => {
   const starshipsList = React.useMemo<ListItem[]>(
     () =>
       starships.map(({ id, name }) => ({
+        id,
         name,
-        id
+        image: '/static/images/starship.jpg'
       })),
     [starships]
   );

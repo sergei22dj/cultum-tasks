@@ -1,7 +1,7 @@
 import * as React from 'react';
 // view components
+import { Card } from '@md-mi/card';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { Card } from '@md-modules/sw-graphql/starships/components/card';
 // context
 import { StarshipsAPIContext } from '@md-sw-starships/layers/api/starships';
 import { StarshipsBLContext } from '@md-sw-starships/layers/business';
@@ -17,7 +17,12 @@ const StarshipsPresentation = () => {
       <ContentLoader isLoading={isLoading} error={error}>
         <Wrapper>
           {starshipsList.map((starship) => (
-            <Card {...starship} key={starship.id} />
+            <Card
+              key={starship.id}
+              href='/graphql/starships/[id]'
+              as={`/graphql/starships/${starship.id}`}
+              {...starship}
+            />
           ))}
         </Wrapper>
       </ContentLoader>

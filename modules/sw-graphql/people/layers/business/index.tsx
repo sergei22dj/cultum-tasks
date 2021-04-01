@@ -4,7 +4,7 @@ import { PeopleAPIContext } from '@md-sw-people/layers/api/people';
 // types
 import { GetPerson } from '@md-sw-people/queries/people/types';
 
-type ListItem = Pick<GetPerson, 'id' | 'name'>;
+type ListItem = Pick<GetPerson, 'id' | 'name'> & { image: string };
 
 interface Context {
   peopleList: ListItem[];
@@ -20,8 +20,9 @@ const PeopleBLContextProvider: React.FC = ({ children }) => {
 
   const peopleList = React.useMemo<ListItem[]>(() => {
     return people.map(({ id, name }) => ({
+      id,
       name,
-      id
+      image: '/static/images/Ben-Kenobi.jpg'
     }));
   }, [people]);
 

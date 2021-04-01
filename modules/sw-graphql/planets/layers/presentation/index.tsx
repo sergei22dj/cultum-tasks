@@ -1,7 +1,7 @@
 import * as React from 'react';
 // view components
+import { Card } from '@md-mi/card';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { Card } from '@md-modules/sw-graphql/planets/components/card';
 // context
 import { PlanetsAPIContext } from '@md-sw-planets/layers/api/planets';
 import { PlanetsBLContext } from '@md-sw-planets/layers/business';
@@ -17,7 +17,7 @@ const PlanetsPresentation = () => {
       <ContentLoader isLoading={isLoading} error={error}>
         <Wrapper>
           {planetsList.map((person) => (
-            <Card {...person} key={person.id} />
+            <Card key={person.id} href='/graphql/planets/[id]' as={`/graphql/planets/${person.id}`} {...person} />
           ))}
         </Wrapper>
       </ContentLoader>

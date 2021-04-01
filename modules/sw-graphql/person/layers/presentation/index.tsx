@@ -3,17 +3,10 @@ import * as React from 'react';
 import { PersonAPIContext } from '@md-sw-person/layers/api/person';
 import { PersonBLContext } from '@md-sw-person/layers/business';
 // view components
+import { Info } from '@md-mi/info';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { PersonInfo } from '@md-sw-person/components/person-info';
 // views
-import {
-  ContentWrapper,
-  PersonDetailsContainer,
-  PersonImgContainer,
-  PersonInfoContainer,
-  PersonName,
-  Wrapper
-} from './views';
+import { Name, Wrapper, ImgContainer, InfoContainer, ContentWrapper, DetailsContainer } from '@md-sw/shared/views';
 
 const PersonPresentation = () => {
   const { isLoading, person, error } = React.useContext(PersonAPIContext);
@@ -23,17 +16,17 @@ const PersonPresentation = () => {
     <ContentWrapper>
       <Wrapper>
         <ContentLoader isLoading={isLoading} error={error}>
-          <PersonImgContainer>
+          <ImgContainer>
             <img src='/static/images/Ben-Kenobi.jpg' alt='Kenobi' />
-          </PersonImgContainer>
-          <PersonDetailsContainer>
-            {person && <PersonName>{person.name}</PersonName>}
-            <PersonInfoContainer>
+          </ImgContainer>
+          <DetailsContainer>
+            {person && <Name>{person.name}</Name>}
+            <InfoContainer>
               {personInfo.map((i, idx) => (
-                <PersonInfo key={idx} {...i} />
+                <Info key={idx} {...i} />
               ))}
-            </PersonInfoContainer>
-          </PersonDetailsContainer>
+            </InfoContainer>
+          </DetailsContainer>
         </ContentLoader>
       </Wrapper>
     </ContentWrapper>

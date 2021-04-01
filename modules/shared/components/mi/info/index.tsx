@@ -7,11 +7,11 @@ interface Props {
   value: React.ReactNode;
 }
 
-const PersonInfo: React.FC<Props> = ({ label, value }) => (
+const Info: React.FC<Props> = ({ label, value }) => (
   <InfoWrapper>
     <InfoName>{label}:</InfoName>
     <InfoValue>{value}</InfoValue>
   </InfoWrapper>
 );
 
-export { PersonInfo };
+export { Info };

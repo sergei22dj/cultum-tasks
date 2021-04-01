@@ -1,7 +1,7 @@
 import * as React from 'react';
 // view components
+import { Card } from '@md-mi/card';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { Card } from '@md-modules/sw-graphql/people/components/card';
 // context
 import { PeopleAPIContext } from '@md-sw-people/layers/api/people';
 import { PeopleBLContext } from '@md-sw-people/layers/business';
@@ -17,7 +17,7 @@ const PeoplePresentation = () => {
       <ContentLoader isLoading={isLoading} error={error}>
         <Wrapper>
           {peopleList.map((person) => (
-            <Card {...person} key={person.id} />
+            <Card key={person.id} href='/graphql/people/[id]' as={`/graphql/people/${person.id}`} {...person} />
           ))}
         </Wrapper>
       </ContentLoader>

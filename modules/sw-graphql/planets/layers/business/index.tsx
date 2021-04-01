@@ -4,7 +4,7 @@ import { PlanetsAPIContext } from '@md-sw-planets/layers/api/planets';
 // types
 import { Planet } from '@md-shared/queries/planets/types';
 
-type ListItem = Planet;
+type ListItem = Planet & { image: string };
 
 interface Context {
   planetsList: ListItem[];
@@ -20,8 +20,9 @@ const PlanetsBLContextProvider: React.FC = ({ children }) => {
 
   const planetsList = React.useMemo<ListItem[]>(() => {
     return planets.map(({ id, name }) => ({
+      id,
       name,
-      id
+      image: '/static/images/planet.png'
     }));
   }, [planets]);
 

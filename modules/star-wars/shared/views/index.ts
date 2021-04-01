@@ -12,7 +12,7 @@ export const ContentWrapper = styled.div`
   margin: 0 auto;
 `;
 
-export const PersonImgContainer = styled.div`
+export const ImgContainer = styled.div`
   flex: 2;
 
   img {
@@ -22,14 +22,14 @@ export const PersonImgContainer = styled.div`
   }
 `;
 
-export const PersonDetailsContainer = styled.div`
+export const DetailsContainer = styled.div`
   flex: 1;
   padding-left: 75px;
 `;
 
-export const PersonName = styled.h2`
+export const Name = styled.h2`
   text-align: center;
   color: ${({ theme }) => theme.colors.white};
 `;
 
-export const PersonInfoContainer = styled.div``;
+export const InfoContainer = styled.div``;

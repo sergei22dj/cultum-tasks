@@ -1,6 +1,6 @@
 import * as React from 'react';
 // view components
-import { Card } from './components/card';
+import { Card } from '@md-mi/card';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
 // views
 import { ContentWrapper, Wrapper } from '@md-shared/views/common';
@@ -15,7 +15,7 @@ import { Starship } from '@md-shared/types/starship';
 import { RootStore } from '@md-store/index';
 import { ThunkDispatch } from '@md-store/helpers';
 
-type ListItem = Pick<Starship, 'id' | 'name'>;
+type ListItem = Pick<Starship, 'id' | 'name'> & { image: string };
 
 const Starships = () => {
   // hooks
@@ -35,8 +35,9 @@ const Starships = () => {
   const starshipsList = React.useMemo<ListItem[] | undefined>(
     () =>
       data?.results?.map(({ name, uid }) => ({
+        name,
         id: uid,
-        name
+        image: '/static/images/starship.jpg'
       })),
     [data]
   );
@@ -50,7 +51,7 @@ const Starships = () => {
       <ContentLoader isLoading={loading} error={clientError(error)}>
         <Wrapper>
           {starshipsList?.map((starship) => (
-            <Card key={starship.id} name={starship.name} id={starship.id} />
+            <Card key={starship.id} href='/redux/starships/[id]' as={`/redux/starships/${starship.id}`} {...starship} />
           ))}
         </Wrapper>
       </ContentLoader>

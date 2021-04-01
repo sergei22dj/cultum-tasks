@@ -1,7 +1,7 @@
 import * as React from 'react';
 // view components
+import { Info } from '@md-mi/info';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { StarshipInfo } from './components/starship-info';
 // hooks
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/dist/client/router';
@@ -13,14 +13,7 @@ import { clientError } from '@md-modules/shared/utils/errors';
 import * as API from '@md-store/modules/api';
 import { ThunkDispatch } from '@md-store/helpers';
 // views
-import {
-  ContentWrapper,
-  StarshipDetailsContainer,
-  StarshipImgContainer,
-  StarshipInfoContainer,
-  StarshipName,
-  Wrapper
-} from './views';
+import { Name, Wrapper, ImgContainer, InfoContainer, ContentWrapper, DetailsContainer } from '@md-sw/shared/views';
 
 interface StarshipInfoProps {
   label: string;
@@ -68,17 +61,17 @@ const StarshipContainer = () => {
     <ContentWrapper>
       <Wrapper>
         <ContentLoader isLoading={loading} error={clientError(error)}>
-          <StarshipImgContainer>
+          <ImgContainer>
             <img src='/static/images/starship.jpg' alt='starship' />
-          </StarshipImgContainer>
-          <StarshipDetailsContainer>
-            {starship && <StarshipName>{starship.properties.name}</StarshipName>}
-            <StarshipInfoContainer>
+          </ImgContainer>
+          <DetailsContainer>
+            {starship && <Name>{starship.properties.name}</Name>}
+            <InfoContainer>
               {starshipInfo.map((i, idx) => (
-                <StarshipInfo key={idx} {...i} />
+                <Info key={idx} {...i} />
               ))}
-            </StarshipInfoContainer>
-          </StarshipDetailsContainer>
+            </InfoContainer>
+          </DetailsContainer>
         </ContentLoader>
       </Wrapper>
     </ContentWrapper>

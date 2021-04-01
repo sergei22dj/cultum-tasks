@@ -1,30 +1,34 @@
 import * as React from 'react';
 // components
+import { Link } from '@md-ui/link';
 import { Button } from '@md-ui/button';
 // views
 import { CardWrapper, CardImgWrapper, CardImg, CardFooter, CardFooterTitle } from './views';
-// view components
-import { PlanetLink } from '../planet-link';
+// types
+import { LinkProps } from 'next/link';
 
-interface Props {
+interface Props extends LinkProps {
   id: string;
   name: string;
+  image: string;
 }
 
-const Card: React.FC<Props> = ({ id, name }) => (
-  <CardWrapper key={id}>
+const Card: React.FC<Props> = ({ id, name, image, ...rest }) => (
+  <CardWrapper>
     <CardImgWrapper>
-      <CardImg src={'/static/images/planet.png'} alt={`${name}-${id}`} />
+      <CardImg src={image} alt={`${name}-${id}`} />
     </CardImgWrapper>
     <CardFooter>
-      <PlanetLink pId={id}>
+      <Link {...rest}>
         <CardFooterTitle>{name}</CardFooterTitle>
-      </PlanetLink>
-      <PlanetLink pId={id}>
+      </Link>
+      <Link {...rest}>
         <Button preset='details'>Details</Button>
-      </PlanetLink>
+      </Link>
     </CardFooter>
   </CardWrapper>
 );
 
-export { Card };
+const memoized = React.memo(Card);
+
+export { memoized as Card };

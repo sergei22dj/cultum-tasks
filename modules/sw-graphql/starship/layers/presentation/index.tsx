@@ -3,17 +3,10 @@ import * as React from 'react';
 import { StarshipAPIContext } from '@md-sw-starship/layers/api/starship';
 import { StarshipBLContext } from '@md-sw-starship/layers/business';
 // view components
+import { Info } from '@md-mi/info';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { StarshipInfo } from '@md-sw-starship/components/starship-info';
 // views
-import {
-  ContentWrapper,
-  StarshipDetailsContainer,
-  StarshipImgContainer,
-  StarshipInfoContainer,
-  StarshipName,
-  Wrapper
-} from './views';
+import { Name, Wrapper, ImgContainer, InfoContainer, ContentWrapper, DetailsContainer } from '@md-sw/shared/views';
 
 const StarshipPresentation = () => {
   const { isLoading, starship, error } = React.useContext(StarshipAPIContext);
@@ -23,17 +16,17 @@ const StarshipPresentation = () => {
     <ContentWrapper>
       <Wrapper>
         <ContentLoader isLoading={isLoading} error={error}>
-          <StarshipImgContainer>
+          <ImgContainer>
             <img src='/static/images/starship.jpg' alt='Kenobi' />
-          </StarshipImgContainer>
-          <StarshipDetailsContainer>
-            {starship && <StarshipName>{starship.name}</StarshipName>}
-            <StarshipInfoContainer>
+          </ImgContainer>
+          <DetailsContainer>
+            {starship && <Name>{starship.name}</Name>}
+            <InfoContainer>
               {starshipInfo.map((i, idx) => (
-                <StarshipInfo key={idx} {...i} />
+                <Info key={idx} {...i} />
               ))}
-            </StarshipInfoContainer>
-          </StarshipDetailsContainer>
+            </InfoContainer>
+          </DetailsContainer>
         </ContentLoader>
       </Wrapper>
     </ContentWrapper>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 // view components
+import { Info } from '@md-mi/info';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
-import { PlanetInfo } from './components/planet-info';
 // hooks
 import { useSelector } from 'react-redux';
 // types
@@ -9,14 +9,7 @@ import { RootStore } from 'store';
 // helpers
 import { clientError } from '@md-modules/shared/utils/errors';
 // views
-import {
-  ContentWrapper,
-  PlanetDetailsContainer,
-  PlanetImgContainer,
-  PlanetInfoContainer,
-  PlanetName,
-  Wrapper
-} from './views';
+import { Name, Wrapper, ImgContainer, InfoContainer, ContentWrapper, DetailsContainer } from '@md-sw/shared/views';
 
 interface PlanetInfoProps {
   label: string;
@@ -53,17 +46,17 @@ const PlanetContainer = () => {
     <ContentWrapper>
       <Wrapper>
         <ContentLoader isLoading={loading} error={clientError(error)}>
-          <PlanetImgContainer>
+          <ImgContainer>
             <img src='/static/images/planet.png' alt='planet' />
-          </PlanetImgContainer>
-          <PlanetDetailsContainer>
-            {planet && <PlanetName>{planet.properties.name}</PlanetName>}
-            <PlanetInfoContainer>
+          </ImgContainer>
+          <DetailsContainer>
+            {planet && <Name>{planet.properties.name}</Name>}
+            <InfoContainer>
               {planetInfo.map((i, idx) => (
-                <PlanetInfo key={idx} {...i} />
+                <Info key={idx} {...i} />
               ))}
-            </PlanetInfoContainer>
-          </PlanetDetailsContainer>
+            </InfoContainer>
+          </DetailsContainer>
         </ContentLoader>
       </Wrapper>
     </ContentWrapper>

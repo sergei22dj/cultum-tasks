@@ -16,6 +16,7 @@
     "jsx": "preserve",
     "paths": {
       "@md-modules/*": ["./modules/*"],
+      "@md-sw/*": ["./modules/star-wars/*"],
       "@md-sw-redux/*": ["./modules/sw-redux/*"],
       "@md-sw-graphql/*": ["./modules/sw-graphql/*"],
       "@md-sw-people/*": ["./modules/sw-graphql/people/*"],
@@ -28,6 +29,7 @@
       "@md-shared/*": ["./modules/shared/*"],
       "@md-styles/*": ["./modules/shared/styles/*"],
       "@md-ui/*": ["./modules/shared/components/ui/*"],
+      "@md-mi/*": ["./modules/shared/components/mi/*"],
       "@md-utils/*": ["./modules/shared/utils/*"],
       "@md-utils": ["./modules/shared/utils"],
       "@md-managers/*": ["./modules/shared/managers/*"],

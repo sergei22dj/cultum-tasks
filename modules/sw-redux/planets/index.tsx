@@ -1,6 +1,6 @@
 import * as React from 'react';
 // view components
-import { Card } from './components/card';
+import { Card } from '@md-mi/card';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
 // views
 import { ContentWrapper, Wrapper } from '@md-shared/views/common';
@@ -9,9 +9,10 @@ import { useSelector } from 'react-redux';
 // types
 import { Planet } from '@md-shared/types/planet';
 import { RootStore } from '@md-store/index';
+// utils
 import { clientError } from '@md-shared/services/api';
 
-type ListItem = Pick<Planet, 'id' | 'name'>;
+type ListItem = Pick<Planet, 'id' | 'name'> & { image: string };
 
 const Planets = () => {
   // store
@@ -28,8 +29,9 @@ const Planets = () => {
   const planetsList = React.useMemo<ListItem[] | undefined>(
     () =>
       data?.results?.map(({ name, uid }) => ({
+        name,
         id: uid,
-        name
+        image: '/static/images/planet.png'
       })),
     [data]
   );
@@ -39,7 +41,7 @@ const Planets = () => {
       <ContentLoader isLoading={loading} error={clientError(error)}>
         <Wrapper>
           {planetsList?.map((planet) => (
-            <Card key={planet.id} name={planet.name} id={planet.id} />
+            <Card key={planet.id} href='/redux/planets/[id]' as={`/redux/planets/${planet.id}`} {...planet} />
           ))}
         </Wrapper>
       </ContentLoader>
