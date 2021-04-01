@@ -1,14 +1,14 @@
 import * as React from 'react';
+// libs
+import { initializeApollo } from '../../../lib/apolloClient';
 // view components
 import { MainLayout } from '@md-shared/layouts/main';
 import { PlanetContainer } from '@md-sw-planet/index';
-// query
-import { GET_PLANET_QUERY } from '@md-sw-planet/queries/planet';
 // types
 import { GetServerSidePropsContext } from 'next';
-import { GetPlanetResponse, GetPlanetVariables } from '@md-sw-planet/queries/planet/types';
-// libs
-import { initializeApollo } from '../../../lib/apolloClient';
+import { GetPlanetResponse, GetPlanetVariables } from '@md-queries/planet/types';
+// queries
+import { GET_PLANET_QUERY } from '@md-queries/planet';
 
 const StarshipPage = () => (
   <MainLayout>

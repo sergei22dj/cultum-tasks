@@ -1,6 +1,6 @@
 import * as React from 'react';
 // view components
-import { Planets } from '@md-sw-redux/planets';
+import { Planets } from '@md-sw/redux/planets';
 import { MainLayout } from '@md-shared/layouts/main';
 // store
 import { initializeStore } from 'lib/redux/initStore';

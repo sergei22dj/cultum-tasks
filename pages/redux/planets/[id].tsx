@@ -1,7 +1,7 @@
 import * as React from 'react';
 // view components
 import { MainLayout } from '@md-shared/layouts/main';
-import { PlanetContainer } from '@md-modules/sw-redux/planet';
+import { PlanetContainer } from '@md-modules/star-wars/redux/planet';
 // types
 import { GetServerSidePropsContext } from 'next';
 import { ThunkDispatch } from '@md-store/helpers';

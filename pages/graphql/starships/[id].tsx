@@ -1,15 +1,15 @@
 import * as React from 'react';
+// libs
 import { GetStaticPropsContext } from 'next';
 import { MainLayout } from '@md-shared/layouts/main';
 import { StarshipContainer } from '@md-sw-starship/index';
+import { initializeApollo } from '../../../lib/apolloClient';
 // query
-import { GET_STARSHIP_QUERY } from '@md-sw-starship/queries/starship';
+import { GET_STARSHIP_QUERY } from '@md-queries/starship';
 import { GET_STARSHIPS_QUERY } from '@md-queries/starships';
 // types
-import { GetStarshipResponse, GetStarshipVariables } from '@md-sw-starship/queries/starship/types';
+import { GetStarshipResponse, GetStarshipVariables } from '@md-queries/starship/types';
 import { GetStarshipsResponse, GetStarshipsVariables } from '@md-queries/starships/types';
-//
-import { initializeApollo } from '../../../lib/apolloClient';
 
 const StarshipPage = () => (
   <MainLayout>
