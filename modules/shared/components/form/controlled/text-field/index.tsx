@@ -9,7 +9,7 @@ import isFunction from 'lodash/isFunction';
 const WRAPPER_STYLE = { mb: 16 };
 
 export interface FormTextFieldProps extends TextFieldProps {
-  control: Control;
+  control: Control<any>;
   error?: FieldError;
   handleOnBlur?: () => void;
   handleOnChange?: () => void;
@@ -24,7 +24,7 @@ const FormInput: React.FC<FormTextFieldProps> = ({ control, error, handleOnBlur,
 
   const handleOnFieldBlur = (formEventHandler: () => void): void => {
     formEventHandler();
-    isFunction(handleOnBlur) && handleOnBlur();
+    handleOnBlur?.();
   };
 
   return (
@@ -32,18 +32,16 @@ const FormInput: React.FC<FormTextFieldProps> = ({ control, error, handleOnBlur,
       control={control}
       defaultValue=''
       name={name}
-      render={({ onChange, onBlur, value }) => {
-        return (
-          <TextField
-            errorText={error?.message}
-            onBlur={() => handleOnFieldBlur(onBlur)}
-            onChange={(e) => handleOnChangeText(e.target.value, onChange)}
-            value={value}
-            wrapperStyle={WRAPPER_STYLE}
-            {...rest}
-          />
-        );
-      }}
+      render={({ field }) => (
+        <TextField
+          errorText={error?.message}
+          onBlur={() => handleOnFieldBlur(field.onBlur)}
+          onChange={(e) => handleOnChangeText(e.target.value, field.onChange)}
+          value={field.value}
+          wrapperStyle={WRAPPER_STYLE}
+          {...rest}
+        />
+      )}
     />
   );
 };

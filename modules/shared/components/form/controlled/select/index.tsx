@@ -5,7 +5,7 @@ import { Control, Controller, FieldError } from 'react-hook-form';
 import Select, { Option, SelectProps } from '@md-shared/components/form/select';
 
 interface Props extends Omit<SelectProps, 'inputRef'> {
-  control: Control;
+  control: Control<any>;
   error?: FieldError;
   name: string;
 }
@@ -22,15 +22,15 @@ const FormSelect: React.FC<Props> = ({ control, error, name, options, ...rest })
       control={control}
       defaultValue=''
       name={name}
-      render={({ onBlur, onChange, value, ref }) => (
+      render={({ field }) => (
         <Select
           errorText={error?.message}
-          handleBlur={onBlur}
-          handleChange={(value: string | string[]) => onChange(value)}
-          inputRef={ref}
+          handleBlur={field.onBlur}
+          handleChange={(value: string | string[]) => field.onChange(value)}
+          inputRef={field.ref}
           name={name}
           options={options}
-          value={getValue(value)}
+          value={getValue(field.value)}
           {...rest}
         />
       )}

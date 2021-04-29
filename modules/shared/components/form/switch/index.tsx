@@ -11,6 +11,8 @@ interface Props {
 const Switch: React.FC<Props> = ({ isOn = false, content, onChange }) => {
   const [toggled, setToggled] = React.useState(isOn);
 
+  React.useEffect(() => setToggled(isOn), [isOn]);
+
   const handleToggle = () => {
     setToggled((prev) => {
       onChange?.(!prev);
@@ -18,8 +20,6 @@ const Switch: React.FC<Props> = ({ isOn = false, content, onChange }) => {
       return !prev;
     });
   };
-
-  React.useEffect(() => setToggled(isOn), [isOn]);
 
   return (
     <Wrapper toggled={toggled}>

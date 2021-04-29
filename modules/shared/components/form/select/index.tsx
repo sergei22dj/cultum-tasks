@@ -20,7 +20,7 @@ export interface SelectProps {
   handleChange?: (value: string | string[]) => unknown;
   handleFocus?: () => unknown;
   handleInputChange?: (value: string) => unknown;
-  inputRef: React.RefObject<ReactSelect>;
+  inputRef: React.Ref<ReactSelect>;
   isDisabled?: boolean;
   isMulti?: boolean;
   isSearchable?: boolean;

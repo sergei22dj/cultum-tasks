@@ -24,6 +24,7 @@
     "@typescript-eslint/no-use-before-define": ["error"],
     "semi": ["error", "always"],
     "react/react-in-jsx-scope": 0,
+    "multiline-ternary": 0,
     "react/display-name": 0,
     "react/prop-types": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
