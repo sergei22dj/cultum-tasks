@@ -1,12 +1,13 @@
 import * as React from 'react';
 // libs
-import ReactSelect, { OptionsType } from 'react-select';
+import ReactSelect, { OnChangeValue } from 'react-select';
 // components
 import { ErrorMessage } from '@md-shared/components/form/error-message';
 // views
 import { Wrapper, Label, reactSelectTheme, getSelectStyles } from '@md-shared/components/form/select/views';
 // utils
 import isFunction from 'lodash/isFunction';
+import { RefCallBack } from 'react-hook-form';
 
 // types
 export type Option = {
@@ -20,7 +21,7 @@ export interface SelectProps {
   handleChange?: (value: string | string[]) => unknown;
   handleFocus?: () => unknown;
   handleInputChange?: (value: string) => unknown;
-  inputRef: React.Ref<ReactSelect>;
+  inputRef: RefCallBack;
   isDisabled?: boolean;
   isMulti?: boolean;
   isSearchable?: boolean;
@@ -59,7 +60,7 @@ const Select: React.FC<SelectProps> = ({
     isFunction(handleFocus) && handleFocus();
   };
 
-  const onChange = (option: Option | OptionsType<Option> | null) => {
+  const onChange = (option: Option | OnChangeValue<Option, boolean> | null) => {
     if (!option) return;
 
     if (isFunction(handleChange)) {
@@ -81,7 +82,7 @@ const Select: React.FC<SelectProps> = ({
     <Wrapper>
       {label && <Label>{label}</Label>}
       <ReactSelect
-        inputRef={inputRef}
+        ref={inputRef}
         instanceId={name}
         isDisabled={isDisabled}
         isMulti={isMulti}
