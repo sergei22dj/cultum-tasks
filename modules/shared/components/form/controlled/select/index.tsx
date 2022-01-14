@@ -1,16 +1,15 @@
 import * as React from 'react';
 // libs
-import { Control, Controller, FieldError } from 'react-hook-form';
+import { Control, Controller } from 'react-hook-form';
 // components
 import Select, { Option, SelectProps } from '@md-shared/components/form/select';
 
 interface Props extends Omit<SelectProps, 'inputRef'> {
   control: Control<any>;
-  error?: FieldError;
   name: string;
 }
 
-const FormSelect: React.FC<Props> = ({ control, error, name, options, ...rest }) => {
+const FormSelect: React.FC<Props> = ({ control, name, options, ...rest }) => {
   const getValue = (value: string | string[]): Option | Option[] => {
     return Array.isArray(value)
       ? (value.map((i) => options.find(({ value }) => value === i)) as Option[])
@@ -22,7 +21,7 @@ const FormSelect: React.FC<Props> = ({ control, error, name, options, ...rest })
       control={control}
       defaultValue=''
       name={name}
-      render={({ field }) => (
+      render={({ field, fieldState: { error } }) => (
         <Select
           errorText={error?.message}
           handleBlur={field.onBlur}

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 // components
 import { Button } from '@md-ui/button';
-import { FormInput, FormSelect } from '@md-shared/components/form/index';
+import { FormInput, FormSelect } from '@md-shared/components/form';
 // other
 import { schema } from './validation-schema';
 // views
@@ -30,7 +30,7 @@ const BUTTON_STYLE = {
 };
 
 const FormExample = () => {
-  const { control, formState, handleSubmit } = useForm<FormData>({
+  const { control, handleSubmit } = useForm<FormData>({
     defaultValues: { fruits: ['vanilla', 'strawberry'] },
     resolver: yupResolver(schema)
   });
@@ -40,24 +40,11 @@ const FormExample = () => {
   return (
     <ContentWrapper>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          control={control}
-          error={formState.errors?.name}
-          label='Name'
-          name='name'
-          placeholder='Enter name...'
-        />
-        <FormInput control={control} error={formState.errors?.email} label='Email' name='email' />
-        <FormInput control={control} error={formState.errors?.phoneNumber} label='Phone number' name='phoneNumber' />
-        <FormSelect control={control} error={formState.errors?.fruit} label='Fruit' name='fruit' options={OPTIONS} />
-        <FormSelect
-          control={control}
-          error={formState.errors?.fruits}
-          isMulti
-          label='Fruits'
-          name='fruits'
-          options={OPTIONS}
-        />
+        <FormInput control={control} label='Name' name='name' placeholder='Enter name...' />
+        <FormInput control={control} label='Email' name='email' />
+        <FormInput control={control} label='Phone number' name='phoneNumber' />
+        <FormSelect control={control} label='Fruit' name='fruit' options={OPTIONS} />
+        <FormSelect control={control} isMulti label='Fruits' name='fruits' options={OPTIONS} />
 
         <ButtonWrapper>
           <Button type='submit' buttonStyle={BUTTON_STYLE}>
