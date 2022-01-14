@@ -2,7 +2,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -15,26 +19,69 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
-      "@md-modules/*": ["./modules/*"],
-      "@md-sw/*": ["./modules/star-wars/*"],
-      "@md-sw-people/*": ["./modules/star-wars/graphql/people/*"],
-      "@md-sw-person/*": ["./modules/star-wars/graphql/person/*"],
-      "@md-sw-starships/*": ["./modules/star-wars/graphql/starships/*"],
-      "@md-sw-starship/*": ["./modules/star-wars/graphql/starship/*"],
-      "@md-sw-planets/*": ["./modules/star-wars/graphql/planets/*"],
-      "@md-sw-planet/*": ["./modules/star-wars/graphql/planet/*"],
-      "@md-queries/*": ["./modules/shared/queries/*"],
-      "@md-shared/*": ["./modules/shared/*"],
-      "@md-styles/*": ["./modules/shared/styles/*"],
-      "@md-ui/*": ["./modules/shared/components/ui/*"],
-      "@md-mi/*": ["./modules/shared/components/mi/*"],
-      "@md-utils/*": ["./modules/shared/utils/*"],
-      "@md-utils": ["./modules/shared/utils"],
-      "@md-managers/*": ["./modules/shared/managers/*"],
-      "@md-constants/*": ["./modules/shared/constants/*"],
-      "@md-store/*": ["./store/*"]
-    }
+      "@md-modules/*": [
+        "./modules/*"
+      ],
+      "@md-sw/*": [
+        "./modules/star-wars/*"
+      ],
+      "@md-sw-people/*": [
+        "./modules/star-wars/graphql/people/*"
+      ],
+      "@md-sw-person/*": [
+        "./modules/star-wars/graphql/person/*"
+      ],
+      "@md-sw-starships/*": [
+        "./modules/star-wars/graphql/starships/*"
+      ],
+      "@md-sw-starship/*": [
+        "./modules/star-wars/graphql/starship/*"
+      ],
+      "@md-sw-planets/*": [
+        "./modules/star-wars/graphql/planets/*"
+      ],
+      "@md-sw-planet/*": [
+        "./modules/star-wars/graphql/planet/*"
+      ],
+      "@md-queries/*": [
+        "./modules/shared/queries/*"
+      ],
+      "@md-shared/*": [
+        "./modules/shared/*"
+      ],
+      "@md-styles/*": [
+        "./modules/shared/styles/*"
+      ],
+      "@md-ui/*": [
+        "./modules/shared/components/ui/*"
+      ],
+      "@md-mi/*": [
+        "./modules/shared/components/mi/*"
+      ],
+      "@md-utils/*": [
+        "./modules/shared/utils/*"
+      ],
+      "@md-utils": [
+        "./modules/shared/utils"
+      ],
+      "@md-managers/*": [
+        "./modules/shared/managers/*"
+      ],
+      "@md-constants/*": [
+        "./modules/shared/constants/*"
+      ],
+      "@md-store/*": [
+        "./store/*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
