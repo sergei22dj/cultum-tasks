@@ -1,13 +1,14 @@
 import * as React from 'react';
 // libs
 import ReactSelect, { OnChangeValue } from 'react-select';
+// types
+import { RefCallBack } from 'react-hook-form';
 // components
 import { ErrorMessage } from '@md-shared/components/form/error-message';
 // views
 import { Wrapper, Label, reactSelectTheme, getSelectStyles } from '@md-shared/components/form/select/views';
 // utils
 import isFunction from 'lodash/isFunction';
-import { RefCallBack } from 'react-hook-form';
 
 // types
 export type Option = {
