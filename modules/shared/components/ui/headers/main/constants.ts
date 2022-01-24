@@ -1,3 +1,8 @@
+export const globalMenuItems = [
+  { l: 'Form', h: '/form' },
+  { l: 'Dynamic import', h: '/dynamic-import' }
+];
+
 export const graphqlMenuItems = [
   { l: 'People (CSR)', h: '/graphql/people' },
   { l: 'Planets (SSR)', h: '/graphql/planets' },
