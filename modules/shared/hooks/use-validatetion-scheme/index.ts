@@ -10,8 +10,8 @@ const setInError = (errors: any, innerError: any) => {
 
 const emptyObj = Object.create(null);
 
-export const makeValidate = <T extends AnyObject>(schema: yup.InferType<TypedSchema>) => {
-  return async (values: T) => {
+export const makeValidate = (schema: yup.InferType<TypedSchema>) => {
+  return async (values: AnyObject) => {
     try {
       await schema.validate(values, { abortEarly: false });
     } catch (err: any) {
@@ -20,8 +20,8 @@ export const makeValidate = <T extends AnyObject>(schema: yup.InferType<TypedSch
   };
 };
 
-const useValidationSchema = <T extends AnyObject>(schema: yup.InferType<TypedSchema>) => {
-  const validate = useMemo(() => makeValidate<T>(schema), [schema]);
+const useValidationSchema = (schema: yup.InferType<TypedSchema>) => {
+  const validate = useMemo(() => makeValidate(schema), [schema]);
 
   return validate;
 };

@@ -33,7 +33,7 @@ const BUTTON_STYLE = {
 };
 
 const ReactFinalFormExample = () => {
-  const validate = useValidationSchema<FormData>(schema);
+  const validate = useValidationSchema(schema);
 
   const onSubmit = (data: FormData) => window.alert(JSON.stringify(data));
 
