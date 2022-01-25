@@ -18,10 +18,11 @@ interface PlanetInfoProps {
 
 const PlanetContainer = () => {
   // store
-  const { data: planet, error, loading } = useSelector<
-    RootStore,
-    Pick<RootStore['api']['planets']['getPlanet'], 'data' | 'error' | 'loading'>
-  >((state) => ({
+  const {
+    data: planet,
+    error,
+    loading
+  } = useSelector<RootStore, Pick<RootStore['api']['planets']['getPlanet'], 'data' | 'error' | 'loading'>>((state) => ({
     data: state.api.planets.getPlanet.data,
     error: state.api.planets.getPlanet.error,
     loading: state.api.planets.getPlanet.loading

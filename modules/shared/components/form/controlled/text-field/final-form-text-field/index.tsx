@@ -1,6 +1,6 @@
 import * as React from 'react';
 // libs
-import { Control, Controller } from 'react-hook-form';
+import { Field } from 'react-final-form';
 // components
 import { TextField, TextFieldProps } from '@md-shared/components/form/text-field';
 // utils
@@ -8,14 +8,13 @@ import isFunction from 'lodash/isFunction';
 
 const WRAPPER_STYLE = { mb: 16 };
 
-export interface FormTextFieldProps extends TextFieldProps {
+interface FormTextFieldProps extends TextFieldProps {
   name: string;
-  control: Control<any>;
   handleOnBlur?: () => void;
   handleOnChange?: () => void;
 }
 
-const FormInput: React.FC<FormTextFieldProps> = ({ control, handleOnBlur, handleOnChange, name, ...rest }) => {
+const FinalFormInput: React.FC<FormTextFieldProps> = ({ handleOnBlur, handleOnChange, name, ...rest }) => {
   const handleOnChangeText = (text: string, formEventHandler: (value: string) => void) => {
     formEventHandler(text);
     isFunction(handleOnChange) && handleOnChange();
@@ -27,22 +26,19 @@ const FormInput: React.FC<FormTextFieldProps> = ({ control, handleOnBlur, handle
   };
 
   return (
-    <Controller
-      control={control}
-      defaultValue=''
-      name={name}
-      render={({ field, fieldState: { error } }) => (
+    <Field name={name}>
+      {({ input, meta }) => (
         <TextField
-          errorText={error?.message}
-          onBlur={() => handleOnFieldBlur(field.onBlur)}
-          onChange={(e) => handleOnChangeText(e.target.value, field.onChange)}
-          value={field.value}
+          errorText={meta.error}
+          onBlur={() => handleOnFieldBlur(input.onBlur)}
+          onChange={(e) => handleOnChangeText(e.target.value, input.onChange)}
+          value={input.value}
           wrapperStyle={WRAPPER_STYLE}
           {...rest}
         />
       )}
-    />
+    </Field>
   );
 };
 
-export { FormInput };
+export { FinalFormInput };
