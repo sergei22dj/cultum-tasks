@@ -9,7 +9,7 @@ interface Props extends Omit<SelectProps, 'inputRef'> {
   name: string;
 }
 
-const FormSelect: React.FC<Props> = ({ control, name, options, ...rest }) => {
+const HookFormSelect: React.FC<Props> = ({ control, name, options, ...rest }) => {
   const getValue = (value: string | string[]): Option | Option[] => {
     return Array.isArray(value)
       ? (value.map((i) => options.find(({ value }) => value === i)) as Option[])
@@ -37,4 +37,4 @@ const FormSelect: React.FC<Props> = ({ control, name, options, ...rest }) => {
   );
 };
 
-export { FormSelect };
+export { HookFormSelect };

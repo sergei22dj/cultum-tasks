@@ -26,14 +26,17 @@ const StarshipContainer = () => {
   const { query } = useRouter();
 
   // store
-  const { data: starship, error, loading } = useSelector<
-    RootStore,
-    Pick<RootStore['api']['starships']['getStarship'], 'data' | 'error' | 'loading'>
-  >((state) => ({
-    data: state.api.starships.getStarship.data,
-    error: state.api.starships.getStarship.error,
-    loading: state.api.starships.getStarship.loading
-  }));
+  const {
+    data: starship,
+    error,
+    loading
+  } = useSelector<RootStore, Pick<RootStore['api']['starships']['getStarship'], 'data' | 'error' | 'loading'>>(
+    (state) => ({
+      data: state.api.starships.getStarship.data,
+      error: state.api.starships.getStarship.error,
+      loading: state.api.starships.getStarship.loading
+    })
+  );
 
   // data transformation
   const starshipInfo = React.useMemo<StarshipInfoProps[]>(() => {
