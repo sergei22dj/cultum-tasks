@@ -5,31 +5,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 // components
 import { Button } from '@md-ui/button';
 import { HookFormInput, HookFormSelect } from '@md-shared/components/form';
+// constants
+import { OPTIONS, BUTTON_STYLE, FormData } from '@md-modules/form/constants';
 // validation
 import { schema } from '@md-modules/form/validation';
 // views
 import { ContentWrapper } from '@md-shared/views/common';
 import { FormWrapper, ButtonWrapper } from '@md-modules/form/views';
-
-// types
-interface FormData {
-  name: string;
-  email: string;
-  phoneNumber: string;
-  fruit: string;
-  fruits: string | string[];
-}
-
-// constants
-const OPTIONS = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-];
-
-const BUTTON_STYLE = {
-  width: '150px'
-};
 
 const ReactHookFormExample = () => {
   const { control, handleSubmit } = useForm<FormData>({

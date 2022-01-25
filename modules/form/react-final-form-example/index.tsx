@@ -3,6 +3,8 @@ import * as React from 'react';
 import { Form } from 'react-final-form';
 // hooks
 import useValidationSchema from '@md-shared/hooks/use-validatetion-scheme';
+// constants
+import { OPTIONS, BUTTON_STYLE } from '@md-modules/form/constants';
 // components
 import { Button } from '@md-ui/button';
 import { FinalFormSelect, FinalFormInput } from '@md-shared/components/form';
@@ -11,26 +13,6 @@ import { schema } from '@md-modules/form/validation';
 // views
 import { ContentWrapper } from '@md-shared/views/common';
 import { FormWrapper, ButtonWrapper } from '@md-modules/form/views';
-
-// types
-interface FormData {
-  name: string;
-  email: string;
-  fruit: string;
-  phoneNumber: string;
-  fruits: string | string[];
-}
-
-// constants
-const OPTIONS = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' }
-];
-
-const BUTTON_STYLE = {
-  width: '150px'
-};
 
 const ReactFinalFormExample = () => {
   const validate = useValidationSchema(schema);
