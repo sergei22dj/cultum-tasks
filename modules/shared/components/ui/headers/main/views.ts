@@ -49,6 +49,6 @@ export const TabsWrapper = styled.div`
   padding: 0 15px;
   align-items: center;
 
-  border-top: 1px solid ${({ theme }) => theme.colors.gray600};
   background-color: ${({ theme }) => theme.colors.gray500};
+  border-top: 1px solid ${({ theme }) => theme.colors.gray600};
 `;

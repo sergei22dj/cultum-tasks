@@ -1,6 +1,7 @@
 export const globalMenuItems = [
   { l: 'Form', h: '/form' },
-  { l: 'Dynamic import', h: '/dynamic-import' }
+  { l: 'Dynamic import', h: '/dynamic-import' },
+  { l: 'Image', h: '/images' }
 ];
 
 export const graphqlMenuItems = [
