@@ -10,11 +10,10 @@ interface Props extends Omit<SelectProps, 'inputRef'> {
 }
 
 const HookFormSelect: React.FC<Props> = ({ control, name, options, ...rest }) => {
-  const getValue = (value: string | string[]): Option | Option[] => {
-    return Array.isArray(value)
+  const getValue = (value: string | string[]): Option | Option[] =>
+    Array.isArray(value)
       ? (value.map((i) => options.find(({ value }) => value === i)) as Option[])
       : (options.find((option) => option.value === value) as Option);
-  };
 
   return (
     <Controller
@@ -23,13 +22,13 @@ const HookFormSelect: React.FC<Props> = ({ control, name, options, ...rest }) =>
       name={name}
       render={({ field, fieldState: { error } }) => (
         <Select
-          errorText={error?.message}
-          handleBlur={field.onBlur}
-          handleChange={(value: string | string[]) => field.onChange(value)}
-          inputRef={field.ref}
           name={name}
           options={options}
+          inputRef={field.ref}
+          handleBlur={field.onBlur}
+          errorText={error?.message}
           value={getValue(field.value)}
+          handleChange={field.onChange}
           {...rest}
         />
       )}

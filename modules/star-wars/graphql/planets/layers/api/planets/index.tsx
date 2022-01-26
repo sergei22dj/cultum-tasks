@@ -34,7 +34,7 @@ const PlanetsAPIContextProvider: React.FC = ({ children }) => {
       const result = await refetch(variables);
 
       return result.data ? result.data.allPlanets.planets : [];
-    } catch (error) {
+    } catch (error: any) {
       return U.errors.parseAndCreateClientError(error);
     }
   };

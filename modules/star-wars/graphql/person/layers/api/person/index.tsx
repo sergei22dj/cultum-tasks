@@ -37,7 +37,7 @@ const PersonAPIContextProvider: React.FC = ({ children }) => {
       const result = await refetch(variables);
 
       return result.data?.person;
-    } catch (error) {
+    } catch (error: any) {
       return U.errors.parseAndCreateClientError(error);
     }
   };

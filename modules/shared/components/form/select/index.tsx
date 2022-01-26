@@ -17,20 +17,20 @@ export type Option = {
 };
 
 export interface SelectProps {
+  name: string;
+  label?: string;
+  isMulti?: boolean;
+  options: Option[];
   errorText?: string;
+  isDisabled?: boolean;
+  placeholder?: string;
+  inputRef: RefCallBack;
+  isSearchable?: boolean;
+  value?: Option | Option[];
   handleBlur?: () => unknown;
-  handleChange?: (value: string | string[]) => unknown;
   handleFocus?: () => unknown;
   handleInputChange?: (value: string) => unknown;
-  inputRef: RefCallBack;
-  isDisabled?: boolean;
-  isMulti?: boolean;
-  isSearchable?: boolean;
-  label?: string;
-  name: string;
-  options: Option[];
-  placeholder?: string;
-  value?: Option | Option[];
+  handleChange?: (value: string | string[]) => unknown;
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -49,7 +49,7 @@ const Select: React.FC<SelectProps> = ({
   placeholder,
   value
 }) => {
-  const [isFocused, setFocus] = React.useState<boolean>(false);
+  const [isFocused, setFocus] = React.useState(false);
 
   const onBlur = () => {
     isFocused && setFocus(false);
@@ -83,21 +83,21 @@ const Select: React.FC<SelectProps> = ({
     <Wrapper>
       {label && <Label>{label}</Label>}
       <ReactSelect
-        ref={inputRef}
-        instanceId={name}
-        isDisabled={isDisabled}
-        isMulti={isMulti}
-        isSearchable={isSearchable}
         name={name}
-        onBlur={onBlur}
-        onChange={onChange}
-        onFocus={onFocus}
-        onInputChange={onInputChange}
-        options={options}
-        placeholder={placeholder}
-        styles={getSelectStyles({ isFocused, isDisabled, isError: !!errorText })}
-        theme={reactSelectTheme}
         value={value}
+        ref={inputRef}
+        onBlur={onBlur}
+        onFocus={onFocus}
+        options={options}
+        instanceId={name}
+        isMulti={isMulti}
+        onChange={onChange}
+        isDisabled={isDisabled}
+        theme={reactSelectTheme}
+        placeholder={placeholder}
+        isSearchable={isSearchable}
+        onInputChange={onInputChange}
+        styles={getSelectStyles({ isFocused, isDisabled, isError: !!errorText })}
       />
       <ErrorMessage errorText={errorText} />
     </Wrapper>

@@ -49,12 +49,14 @@ export const INITIAL_STATE: InitialState = {
 
 /* ------------- Thunks ------------- */
 
-export const performAPIGetStarship = (
+export type GetStarshipThunk = (
   id: string
-): ThunkAction<
+) => ThunkAction<
   typeof GET_STARSHIP_LOADING | typeof GET_STARSHIP_ERROR | typeof GET_STARSHIP_SUCCESS,
   Promise<ClientSuccess<StarshipTechResponse> | ClientError<RequestError>>
-> => async (dispatch, getState, createApi) => {
+>;
+
+export const performAPIGetStarship: GetStarshipThunk = (id) => async (dispatch, getState, createApi) => {
   const api = createApi();
 
   try {
@@ -65,7 +67,7 @@ export const performAPIGetStarship = (
     dispatch(setGetStarshipSuccessAction(data.result));
 
     return clientSuccess(data);
-  } catch (error) {
+  } catch (error: any) {
     const errorMap = getRequestError(error);
 
     dispatch(setGetStarshipErrorAction(error.message));

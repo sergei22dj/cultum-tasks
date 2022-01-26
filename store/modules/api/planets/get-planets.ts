@@ -49,10 +49,12 @@ export const INITIAL_STATE: InitialState = {
 
 /* ------------- Thunks ------------- */
 
-export const performAPIGetPlanets = (): ThunkAction<
+export type GetPlanetsThunk = () => ThunkAction<
   typeof GET_PLANETS_LOADING | typeof GET_PLANETS_ERROR | typeof GET_PLANETS_SUCCESS,
   Promise<ClientSuccess<GetPlanetsResponse> | ClientError<RequestError>>
-> => async (dispatch, getState, createApi) => {
+>;
+
+export const performAPIGetPlanets: GetPlanetsThunk = () => async (dispatch, getState, createApi) => {
   const api = createApi();
 
   try {
@@ -63,7 +65,7 @@ export const performAPIGetPlanets = (): ThunkAction<
     dispatch(setGetPlanetsSuccessAction(data));
 
     return clientSuccess(data);
-  } catch (error) {
+  } catch (error: any) {
     const errorMap = getRequestError(error);
 
     dispatch(setGetPlanetsErrorAction(error.message));
