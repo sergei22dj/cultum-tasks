@@ -16,8 +16,8 @@ export const Title = styled.p<{ yellowColor?: boolean }>`
 
 export const CardsWrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 export const CardWrapper = styled.div`

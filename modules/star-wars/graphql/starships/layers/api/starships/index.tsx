@@ -33,7 +33,7 @@ const StarshipsAPIContextProvider: React.FC = ({ children }) => {
       const result = await refetch(variables);
 
       return result.data ? result.data.allStarships.starships : [];
-    } catch (error) {
+    } catch (error: any) {
       return U.errors.parseAndCreateClientError(error);
     }
   };
