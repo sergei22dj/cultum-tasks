@@ -49,14 +49,14 @@ export const INITIAL_STATE: InitialState = {
 
 /* ------------- Thunks ------------- */
 
-export type GetPlanetThunkCreator = (
+export type GetPlanetThunk = (
   id: string
 ) => ThunkAction<
   typeof GET_PLANET_LOADING | typeof GET_PLANET_ERROR | typeof GET_PLANET_SUCCESS,
   Promise<ClientSuccess<PlanetTechResponse> | ClientError<RequestError>>
 >;
 
-export const performAPIGetPlanet: GetPlanetThunkCreator = (id) => async (dispatch, getState, createApi) => {
+export const performAPIGetPlanet: GetPlanetThunk = (id) => async (dispatch, getState, createApi) => {
   const api = createApi();
 
   try {
