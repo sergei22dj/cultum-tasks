@@ -23,9 +23,11 @@ const Switch: React.FC<Props> = ({ isOn = false, content, onChange }) => {
 
   return (
     <Wrapper toggled={toggled}>
-      <Checkbox id={'switch'} type='checkbox' checked={toggled} onChange={handleToggle} />
-      <Label htmlFor={'switch'}>
+      <Checkbox id='switch' type='checkbox' checked={toggled} onChange={handleToggle} />
+
+      <Label htmlFor='switch'>
         <Button />
+
         {content && content}
       </Label>
     </Wrapper>

@@ -33,11 +33,11 @@ const HookFormInput: React.FC<FormTextFieldProps> = ({ control, handleOnBlur, ha
       name={name}
       render={({ field, fieldState: { error } }) => (
         <TextField
+          value={field.value}
           errorText={error?.message}
+          wrapperStyle={WRAPPER_STYLE}
           onBlur={() => handleOnFieldBlur(field.onBlur)}
           onChange={(e) => handleOnChangeText(e.target.value, field.onChange)}
-          value={field.value}
-          wrapperStyle={WRAPPER_STYLE}
           {...rest}
         />
       )}

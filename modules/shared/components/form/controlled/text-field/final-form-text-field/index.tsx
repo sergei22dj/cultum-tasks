@@ -29,11 +29,11 @@ const FinalFormInput: React.FC<FormTextFieldProps> = ({ handleOnBlur, handleOnCh
     <Field name={name}>
       {({ input, meta }) => (
         <TextField
+          value={input.value}
           errorText={meta.error}
+          wrapperStyle={WRAPPER_STYLE}
           onBlur={() => handleOnFieldBlur(input.onBlur)}
           onChange={(e) => handleOnChangeText(e.target.value, input.onChange)}
-          value={input.value}
-          wrapperStyle={WRAPPER_STYLE}
           {...rest}
         />
       )}

@@ -3,11 +3,12 @@ import styled from 'styled-components';
 
 const ErrorText = styled.div`
   bottom: -16px;
-  color: ${({ theme }) => theme.colors.red500};
   font-size: 0.75rem;
   margin-top: 4px;
   position: absolute;
   text-align: left;
+
+  color: ${({ theme }) => theme.colors.red500};
 `;
 
 interface Props {
