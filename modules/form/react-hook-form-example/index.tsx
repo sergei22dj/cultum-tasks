@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '@md-ui/button';
 import { HookFormInput, HookFormSelect } from '@md-shared/components/form';
 // constants
-import { OPTIONS, BUTTON_STYLE, FormData } from '@md-modules/form/constants';
+import { OPTIONS, BUTTON_STYLE, FormData, DEFAULT_VALUES } from '@md-modules/form/constants';
 // validation
 import { schema } from '@md-modules/form/validation';
 // views
@@ -15,7 +15,7 @@ import { FormWrapper, ButtonWrapper } from '@md-modules/form/views';
 
 const ReactHookFormExample = () => {
   const { control, handleSubmit } = useForm<FormData>({
-    defaultValues: { fruits: ['vanilla', 'strawberry'] },
+    defaultValues: DEFAULT_VALUES,
     resolver: yupResolver(schema)
   });
 

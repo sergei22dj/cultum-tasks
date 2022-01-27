@@ -15,3 +15,5 @@ export const OPTIONS = [
 export const BUTTON_STYLE = {
   width: '150px'
 };
+
+export const DEFAULT_VALUES = { fruits: ['vanilla', 'strawberry'] };
