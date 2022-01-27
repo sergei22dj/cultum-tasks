@@ -2,9 +2,9 @@ import * as React from 'react';
 // libs
 import { Form } from 'react-final-form';
 // hooks
-import useValidationSchema from '@md-shared/hooks/use-validatetion-scheme';
+import { useValidationSchema } from '@md-shared/hooks/use-validatetion-scheme';
 // constants
-import { OPTIONS, BUTTON_STYLE } from '@md-modules/form/constants';
+import { OPTIONS, BUTTON_STYLE, FormData, DEFAULT_VALUES } from '@md-modules/form/constants';
 // components
 import { Button } from '@md-ui/button';
 import { FinalFormSelect, FinalFormInput } from '@md-shared/components/form';
@@ -24,7 +24,7 @@ const ReactFinalFormExample = () => {
       <Form
         onSubmit={onSubmit}
         validate={validate}
-        initialValues={{ fruits: ['vanilla', 'strawberry'] }}
+        initialValues={DEFAULT_VALUES}
         render={({ handleSubmit }) => (
           <FormWrapper onSubmit={handleSubmit}>
             <FinalFormInput label='Name' name='name' placeholder='Enter name...' />
