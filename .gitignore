@@ -37,3 +37,7 @@ yarn-error.log*
 
 # vs code settings
 .vscode/settings.json
+
+# other
+schema.graphql
+tsconfig.tsbuildinfo
