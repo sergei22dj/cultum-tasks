@@ -14,11 +14,17 @@ import * as API from '@md-store/modules/api';
 import { ThunkDispatch } from '@md-store/helpers';
 // views
 import { Name, Wrapper, ImgContainer, InfoContainer, ContentWrapper, DetailsContainer } from '@md-sw/shared/views';
+import Image from 'next/image';
 
+// types
 interface StarshipInfoProps {
   label: string;
   value: string | number;
 }
+
+// constants
+const IMAGE_WIDTH = 600;
+const IMAGE_HEIGHT = 350;
 
 const StarshipContainer = () => {
   // hooks
@@ -48,7 +54,10 @@ const StarshipContainer = () => {
       { label: 'Name', value: starship.properties.name ?? 'N/A' },
       { label: 'Model', value: starship.properties.model ?? 'N/A' },
       { label: 'Cost In Credits', value: starship.properties.cost_in_credits ?? 'N/A' },
-      { label: 'Hyperdrive Rating', value: starship.properties.hyperdrive_rating ?? 'N/A' },
+      {
+        label: 'Hyperdrive Rating',
+        value: starship.properties.hyperdrive_rating ?? 'N/A'
+      },
       { label: 'Passengers', value: starship.properties.passengers ?? 'N/A' }
     ];
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,7 +74,15 @@ const StarshipContainer = () => {
       <Wrapper>
         <ContentLoader isLoading={loading} error={clientError(error)}>
           <ImgContainer>
-            <img src='/static/images/starship.jpg' alt='starship' />
+            <Image
+              alt='starship'
+              layout='responsive'
+              placeholder='blur'
+              width={IMAGE_WIDTH}
+              height={IMAGE_HEIGHT}
+              src='/static/images/starship.jpg'
+              blurDataURL='/static/images/starship.jpg'
+            />
           </ImgContainer>
           <DetailsContainer>
             {starship && <Name>{starship.properties.name}</Name>}

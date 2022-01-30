@@ -6,6 +6,7 @@ export const globalMenuItems = [
 
 export const graphqlMenuItems = [
   { l: 'People (CSR)', h: '/graphql/people' },
+  { l: 'People (With BL layer)', h: '/graphql/people-with-bl-layer' },
   { l: 'Planets (SSR)', h: '/graphql/planets' },
   { l: 'Starships (SSG)', h: '/graphql/starships' }
 ];

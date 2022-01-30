@@ -9,7 +9,7 @@ import { GetPeopleResponse, GetPeopleVariables, GetPerson, People } from '@md-qu
 // queries
 import { GET_PEOPLE_QUERY } from '@md-queries/people';
 
-type PersonItem = Pick<GetPerson, 'id' | 'name'> & { image: string };
+export type PersonItem = Pick<GetPerson, 'id' | 'name'> & { image: string };
 
 interface Context {
   people: PersonItem[];

@@ -1,9 +1,10 @@
 import * as React from 'react';
 // components
+import Image from 'next/image';
 import { Link } from '@md-ui/link';
 import { Button } from '@md-ui/button';
 // views
-import { CardWrapper, CardImgWrapper, CardImg, CardFooter, CardFooterTitle } from './views';
+import { CardWrapper, CardImgWrapper, CardFooter, CardFooterTitle } from './views';
 // types
 import { LinkProps } from 'next/link';
 
@@ -16,7 +17,7 @@ interface Props extends LinkProps {
 const Card: React.FC<Props> = ({ id, name, image, ...rest }) => (
   <CardWrapper>
     <CardImgWrapper>
-      <CardImg src={image} alt={`${name}-${id}`} />
+      <Image src={image} layout='fill' objectFit='cover' placeholder='blur' blurDataURL={image} alt={`${name}-${id}`} />
     </CardImgWrapper>
     <CardFooter>
       <Link {...rest}>

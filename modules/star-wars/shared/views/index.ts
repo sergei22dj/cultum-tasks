@@ -14,6 +14,9 @@ export const ContentWrapper = styled.div`
 
 export const ImgContainer = styled.div`
   flex: 2;
+  position: relative;
+  width: 100%;
+  height: 100%;
 
   img {
     display: block;

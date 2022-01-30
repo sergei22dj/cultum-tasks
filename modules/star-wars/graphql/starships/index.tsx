@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { StarshipsAPIContextProvider } from './layers/api/starships';
-import { StarshipsBLContextProvider } from './layers/business';
 import { StarshipsPresentation } from './layers/presentation';
+import { StarshipsAPIContextProvider } from './layers/api/starships';
 
 const StarshipsContainer = () => (
   <StarshipsAPIContextProvider>
-    <StarshipsBLContextProvider>
-      <StarshipsPresentation />
-    </StarshipsBLContextProvider>
+    <StarshipsPresentation />
   </StarshipsAPIContextProvider>
 );
 

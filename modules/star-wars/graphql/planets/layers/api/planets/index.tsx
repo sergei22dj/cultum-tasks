@@ -4,14 +4,16 @@ import { useQuery } from '@apollo/client';
 // utils
 import * as U from '@md-utils';
 // types
-import { GetPlanetsResponse, GetPlanetsVariables, Planets } from '@md-queries/planets/types';
+import { GetPlanetsResponse, GetPlanetsVariables, Planet, Planets } from '@md-queries/planets/types';
 import { ClientError } from '@md-utils/errors/custom';
 // queries
 import { GET_PLANETS_QUERY } from '@md-queries/planets';
 
+type PlanetsList = Planet & { image: string };
+
 interface Context {
-  planets: Planets;
   isLoading: boolean;
+  planets: PlanetsList[];
   error?: ClientError<string>;
   refetch: (variables?: Partial<GetPlanetsVariables>) => Promise<ClientError<string> | Planets>;
 }
@@ -19,7 +21,6 @@ interface Context {
 const PlanetsAPIContext = React.createContext<Context>({
   planets: [],
   isLoading: false,
-  error: undefined,
   refetch: () => Promise.resolve([] as Planets)
 });
 
@@ -39,13 +40,23 @@ const PlanetsAPIContextProvider: React.FC = ({ children }) => {
     }
   };
 
+  const planets = React.useMemo<PlanetsList[]>(() => {
+    return (
+      data?.allPlanets.planets.map(({ id, name }) => ({
+        id,
+        name,
+        image: '/static/images/planet.png'
+      })) || []
+    );
+  }, [data?.allPlanets.planets]);
+
   return (
     <PlanetsAPIContext.Provider
       value={{
-        planets: data ? data.allPlanets.planets : [],
-        error: error ? U.errors.parseAndCreateClientError(error) : undefined,
+        planets,
         isLoading: loading,
-        refetch: refetchPlanets
+        refetch: refetchPlanets,
+        error: error ? U.errors.parseAndCreateClientError(error) : undefined
       }}
     >
       {children}

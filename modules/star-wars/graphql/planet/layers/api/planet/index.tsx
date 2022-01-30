@@ -10,17 +10,22 @@ import { GetPlanetResponse, GetPlanetVariables, Planet } from '@md-queries/plane
 // queries
 import { GET_PLANET_QUERY } from '@md-queries/planet';
 
+interface PlanetInfo {
+  label: string;
+  value: string | number;
+}
+
 interface Context {
   planet?: Planet;
   isLoading: boolean;
+  planetInfo: PlanetInfo[];
   error?: ClientError<string>;
   refetch: (variables?: Partial<GetPlanetVariables>) => Promise<ClientError<string> | Planet | undefined>;
 }
 
 const PlanetAPIContext = React.createContext<Context>({
-  planet: undefined,
+  planetInfo: [],
   isLoading: false,
-  error: undefined,
   refetch: () => Promise.resolve({} as Planet)
 });
 
@@ -42,13 +47,28 @@ const PlanetAPIContextProvider: React.FC = ({ children }) => {
     }
   };
 
+  const planetInfo = React.useMemo<PlanetInfo[]>(() => {
+    if (!data?.planet) {
+      return [];
+    }
+
+    return [
+      { label: 'Diameter', value: data?.planet.diameter ?? 'N/A' },
+      { label: 'Gravity', value: data?.planet.gravity ?? 'N/A' },
+      { label: 'Orbital Period', value: data?.planet.orbitalPeriod ?? 'N/A' },
+      { label: 'Population', value: data?.planet.population ?? 'N/A' }
+    ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [typeof data?.planet === 'undefined']);
+
   return (
     <PlanetAPIContext.Provider
       value={{
-        planet: data ? data.planet : undefined,
+        planetInfo,
         isLoading: loading,
-        error: error ? U.errors.parseAndCreateClientError(error) : undefined,
-        refetch: refetchPlanet
+        refetch: refetchPlanet,
+        planet: data ? data.planet : undefined,
+        error: error ? U.errors.parseAndCreateClientError(error) : undefined
       }}
     >
       {children}

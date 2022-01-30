@@ -10,17 +10,22 @@ import { GetStarship, GetStarshipResponse, GetStarshipVariables } from '@md-quer
 // queries
 import { GET_STARSHIP_QUERY } from '@md-queries/starship';
 
+interface StarshipInfo {
+  label: string;
+  value: string | number;
+}
+
 interface Context {
-  starship?: GetStarship;
   isLoading: boolean;
+  starship?: GetStarship;
+  starshipInfo: StarshipInfo[];
   error?: ClientError<string>;
   refetch: (variables?: Partial<GetStarshipVariables>) => Promise<ClientError<string> | GetStarship | undefined>;
 }
 
 const StarshipAPIContext = React.createContext<Context>({
-  starship: undefined,
+  starshipInfo: [],
   isLoading: false,
-  error: undefined,
   refetch: () => Promise.resolve({} as GetStarship)
 });
 
@@ -42,13 +47,29 @@ const StarshipAPIContextProvider: React.FC = ({ children }) => {
     }
   };
 
+  const starshipInfo = React.useMemo<StarshipInfo[]>(() => {
+    if (!data?.starship) {
+      return [];
+    }
+
+    return [
+      { label: 'Name', value: data?.starship.name ?? 'N/A' },
+      { label: 'Model', value: data?.starship.model ?? 'N/A' },
+      { label: 'Cost In Credits', value: data?.starship.costInCredits ?? 'N/A' },
+      { label: 'Hyperdrive Rating', value: data?.starship.hyperdriveRating ?? 'N/A' },
+      { label: 'Passengers', value: data?.starship.passengers ?? 'N/A' }
+    ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [typeof data?.starship === 'undefined']);
+
   return (
     <StarshipAPIContext.Provider
       value={{
-        starship: data ? data.starship : undefined,
+        starshipInfo,
         isLoading: loading,
-        error: error ? U.errors.parseAndCreateClientError(error) : undefined,
-        refetch: refetchStarship
+        refetch: refetchStarship,
+        starship: data ? data.starship : undefined,
+        error: error ? U.errors.parseAndCreateClientError(error) : undefined
       }}
     >
       {children}

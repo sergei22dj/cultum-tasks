@@ -6,20 +6,22 @@ import { useQuery } from '@apollo/client';
 // queries
 import { GET_STARSHIPS_QUERY } from '@md-queries/starships';
 // types
-import { GetStarshipsResponse, GetStarshipsVariables, Starships } from '@md-queries/starships/types';
+import { Starship } from '@md-shared/types/starship';
 import { ClientError } from '@md-utils/errors/custom';
+import { GetStarshipsResponse, GetStarshipsVariables, Starships } from '@md-queries/starships/types';
+
+type StarshipItem = Pick<Starship, 'id' | 'name'> & { image: string };
 
 interface Context {
-  starships: Starships;
-  error?: ClientError<string>;
   isLoading: boolean;
+  starships: StarshipItem[];
+  error?: ClientError<string>;
   refetch: (variables?: GetStarshipsVariables) => Promise<ClientError<string> | Starships>;
 }
 
 const StarshipsAPIContext = React.createContext<Context>({
   starships: [],
   isLoading: false,
-  error: undefined,
   refetch: () => Promise.resolve([] as Starships)
 });
 
@@ -38,11 +40,21 @@ const StarshipsAPIContextProvider: React.FC = ({ children }) => {
     }
   };
 
+  const starships = React.useMemo<StarshipItem[]>(
+    () =>
+      data?.allStarships.starships.map(({ id, name }) => ({
+        id,
+        name,
+        image: '/static/images/starship.jpg'
+      })) || [],
+    [data?.allStarships.starships]
+  );
+
   const value = {
-    starships: data ? data.allStarships.starships : [],
-    error: error ? U.errors.parseAndCreateClientError(error) : undefined,
+    starships,
     isLoading: loading,
-    refetch: refetchStarships
+    refetch: refetchStarships,
+    error: error ? U.errors.parseAndCreateClientError(error) : undefined
   };
 
   return <StarshipsAPIContext.Provider value={value}>{children}</StarshipsAPIContext.Provider>;

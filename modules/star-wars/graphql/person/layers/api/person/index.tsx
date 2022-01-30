@@ -10,17 +10,22 @@ import { GetPerson, GetPersonResponse, GetPersonVariables } from '@md-queries/pe
 // queries
 import { GET_PERSON_QUERY } from '@md-queries/person';
 
+interface PersonInfo {
+  label: string;
+  value: string;
+}
+
 interface Context {
   person?: GetPerson;
   isLoading: boolean;
+  personInfo: PersonInfo[];
   error?: ClientError<string>;
   refetch: (variables?: Partial<GetPersonVariables>) => Promise<ClientError<string> | GetPerson | undefined>;
 }
 
 const PersonAPIContext = React.createContext<Context>({
-  person: undefined,
+  personInfo: [],
   isLoading: false,
-  error: undefined,
   refetch: () => Promise.resolve({} as GetPerson)
 });
 
@@ -42,11 +47,26 @@ const PersonAPIContextProvider: React.FC = ({ children }) => {
     }
   };
 
+  const personInfo = React.useMemo<PersonInfo[]>(() => {
+    if (!data?.person) {
+      return [];
+    }
+
+    return [
+      { label: 'Gender', value: data?.person.gender ?? 'N/A' },
+      { label: 'Hair Color', value: data?.person.hairColor ?? 'N/A' },
+      { label: 'Eye Color', value: data?.person.eyeColor ?? 'N/A' },
+      { label: 'Birth Year', value: data?.person.birthYear ?? 'N/A' }
+    ];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [typeof data?.person === 'undefined']);
+
   return (
     <PersonAPIContext.Provider
       value={{
-        person: data ? data.person : undefined,
+        personInfo,
         isLoading: loading,
+        person: data ? data.person : undefined,
         error: error ? U.errors.parseAndCreateClientError(error) : undefined,
         refetch: refetchPerson
       }}

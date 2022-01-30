@@ -1,20 +1,26 @@
 import * as React from 'react';
-// view components
-import { Info } from '@md-sw/shared/components/info';
-import { ContentLoader } from '@md-ui/loaders/content-loader';
 // hooks
 import { useSelector } from 'react-redux';
 // types
 import { RootStore } from '@md-store/index';
 // helpers
 import { clientError } from '@md-utils/errors';
+// view components
+import Image from 'next/image';
+import { Info } from '@md-sw/shared/components/info';
+import { ContentLoader } from '@md-ui/loaders/content-loader';
 // views
 import { Name, Wrapper, ImgContainer, InfoContainer, ContentWrapper, DetailsContainer } from '@md-sw/shared/views';
 
+// types
 interface PlanetInfoProps {
   label: string;
   value: string | number;
 }
+
+// constants
+const IMAGE_WIDTH = 600;
+const IMAGE_HEIGHT = 600;
 
 const PlanetContainer = () => {
   // store
@@ -48,7 +54,15 @@ const PlanetContainer = () => {
       <Wrapper>
         <ContentLoader isLoading={loading} error={clientError(error)}>
           <ImgContainer>
-            <img src='/static/images/planet.png' alt='planet' />
+            <Image
+              alt='planet'
+              layout='responsive'
+              placeholder='blur'
+              width={IMAGE_WIDTH}
+              height={IMAGE_HEIGHT}
+              src='/static/images/planet.png'
+              blurDataURL='/static/images/planet.png'
+            />
           </ImgContainer>
           <DetailsContainer>
             {planet && <Name>{planet.properties.name}</Name>}
