@@ -6,6 +6,10 @@
 
 ~ Clone project into your local projects folder:
 
+`npx degit Cultum/Cultum-cultum-fe-starter-kit <your-project-name>`
+
+or
+
 `git clone git@gitlab.com:Venumteam/cultum-fe-starter-kit.git`
 
 ~ Open cloned project in the `IDE`
