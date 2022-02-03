@@ -4,7 +4,8 @@ import { PeopleBLLContext } from '@md-sw/graphql/people-with-bl-layer/layers/bus
 // components
 import Card from '@md-sw/graphql/people-with-bl-layer/components/card';
 // views
-import { CardWrapper, Wrapper, Title, SubTitle } from '@md-sw/graphql/people-with-bl-layer/components/header/views';
+import { Description, Title } from '@md-shared/views/common';
+import { CardWrapper, Wrapper } from '@md-sw/graphql/people-with-bl-layer/components/header/views';
 
 const Header = () => {
   const { selectedPerson } = React.useContext(PeopleBLLContext);
@@ -12,7 +13,7 @@ const Header = () => {
   return (
     <Wrapper>
       <Title>Selected Person: {selectedPerson?.name || 'N/A'}</Title>
-      <SubTitle>{selectedPerson ? JSON.stringify(selectedPerson) : 'N/A'}</SubTitle>
+      <Description>{selectedPerson ? JSON.stringify(selectedPerson) : 'N/A'}</Description>
 
       {selectedPerson && (
         <CardWrapper>

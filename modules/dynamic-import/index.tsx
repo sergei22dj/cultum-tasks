@@ -7,7 +7,8 @@ import { useRouter } from 'next/router';
 import { Button } from '@md-ui/button';
 import { Loader } from '@md-ui/loaders/loader';
 // views
-import { Title, Wrapper } from '@md-modules/dynamic-import/views';
+import { Title } from '@md-shared/views/common';
+import { Wrapper } from '@md-modules/dynamic-import/views';
 
 // These component is loaded dynamically
 const LazyComponent = React.lazy(() => import('./components/lazy-component'));
@@ -22,7 +23,7 @@ const DynamicImportExample = () => {
 
   return (
     <Wrapper>
-      <Title>I recommend setting the mode to "Slow 3G" or "Fast 3G".</Title>
+      <Title yellowColor>I recommend setting the mode to "Slow 3G" or "Fast 3G".</Title>
 
       {isLazyOpen && (
         <React.Suspense fallback={<Loader />}>

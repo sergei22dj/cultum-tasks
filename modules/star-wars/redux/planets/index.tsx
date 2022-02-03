@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Card } from '@md-sw/shared/components/card';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
 // views
-import { ContentWrapper, Wrapper } from '@md-shared/views/common';
+import { ContentWrapper, Description, Title, Wrapper } from '@md-shared/views/common';
 // hooks
 import { useSelector } from 'react-redux';
 // types
@@ -38,6 +38,13 @@ const Planets = () => {
 
   return (
     <ContentWrapper>
+      <Title>SSR (Server-side Rendering)</Title>
+
+      <Description>
+        If a page uses Server-side Rendering, the page HTML is generated on each request. Simply put, with each change,
+        a fully assembled HTML file comes from the server.
+      </Description>
+
       <ContentLoader isLoading={loading} error={clientError(error)}>
         <Wrapper>
           {planetsList?.map((planet) => (

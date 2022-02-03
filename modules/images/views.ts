@@ -7,18 +7,6 @@ export const Wrapper = styled.div`
   justify-content: center;
 `;
 
-export const Title = styled.p<{ yellowColor?: boolean }>`
-  font-size: 24px;
-  font-weight: 500;
-
-  color: ${({ theme, yellowColor }) => (yellowColor ? theme.colors.yellow400 : theme.colors.white)};
-`;
-
-export const SubTitle = styled(Title)`
-  font-size: 14px;
-  opacity: 0.7;
-`;
-
 export const CardsWrapper = styled.div`
   display: flex;
   align-items: center;

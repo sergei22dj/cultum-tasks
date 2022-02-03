@@ -5,13 +5,33 @@ import { ContentLoader } from '@md-ui/loaders/content-loader';
 // context
 import { StarshipsAPIContext } from '@md-sw-starships/layers/api/starships';
 // views
-import { ContentWrapper, Wrapper } from '@md-shared/views/common';
+import { ContentWrapper, Wrapper, Description, Title } from '@md-shared/views/common';
 
 const StarshipsPresentation = () => {
   const { isLoading, error, starships } = React.useContext(StarshipsAPIContext);
 
   return (
     <ContentWrapper>
+      <Title>SSG (Static-side Generation)</Title>
+
+      <Description>
+        If a page uses Static Generation, the page HTML is generated at build time. That means in production, the page
+        HTML is generated when you run `next build`. This HTML will then be reused on each request. It can be cached by
+        a CDN. You can also use it with Client-side Rendering to bring in additional data.
+      </Description>
+
+      <Title>When should I use SSG?</Title>
+
+      <Description>
+        You can use Static Generation for many types of pages, including:
+        <ul>
+          <li>Marketing pages</li>
+          <li>Blog posts and portfolios</li>
+          <li>E-commerce product listings</li>
+          <li>Help and documentation</li>
+        </ul>
+      </Description>
+
       <ContentLoader isLoading={isLoading} error={error}>
         <Wrapper>
           {starships.map((starship) => (

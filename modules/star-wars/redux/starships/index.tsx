@@ -3,7 +3,7 @@ import * as React from 'react';
 import { Card } from '@md-sw/shared/components/card';
 import { ContentLoader } from '@md-ui/loaders/content-loader';
 // views
-import { ContentWrapper, Wrapper } from '@md-shared/views/common';
+import { ContentWrapper, Description, Title, Wrapper } from '@md-shared/views/common';
 // hooks
 import { useDispatch, useSelector } from 'react-redux';
 // store
@@ -48,6 +48,21 @@ const Starships = () => {
 
   return (
     <ContentWrapper>
+      <Title>CSR (Client-side Rendering)</Title>
+
+      <Description>
+        Client-side rendering (CSR) means rendering pages directly in the browser using JavaScript. All logic, data
+        fetching, templating and routing are handled on the client rather than the server. Simply put, we get an empty
+        HTML file (on the client side) and with the help of a JavaScript we fill it with content.
+      </Description>
+
+      <Title>When should I use CSR?</Title>
+
+      <Description>
+        Rendering on the client side should be used if you have elements on the page that should be rerender on any data
+        change or on any events.
+      </Description>
+
       <ContentLoader isLoading={loading} error={clientError(error)}>
         <Wrapper>
           {starshipsList?.map((starship) => (

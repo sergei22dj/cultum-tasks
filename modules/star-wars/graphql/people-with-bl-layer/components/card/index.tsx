@@ -2,9 +2,10 @@ import React from 'react';
 // components
 import Image from 'next/image';
 import { Button } from '@md-ui/button';
+// context
+import { PeopleBLLContext } from '@md-sw/graphql/people-with-bl-layer/layers/business';
 // views
 import { CardFooter, CardFooterTitle, CardImgWrapper, CardWrapper } from '@md-sw/shared/components/card/views';
-import { PeopleBLLContext } from '@md-sw/graphql/people-with-bl-layer/layers/business';
 
 interface Props {
   id: string;
