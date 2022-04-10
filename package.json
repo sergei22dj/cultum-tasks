@@ -23,6 +23,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.7",
     "@hookform/resolvers": "^2.8.5",
+    "apollo-client": "^2.6.10",
     "axios": "^0.24.0",
     "final-form": "^4.20.6",
     "graphql": "^16.2.0",

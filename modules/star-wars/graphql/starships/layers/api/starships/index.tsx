@@ -9,6 +9,7 @@ import { GET_STARSHIPS_QUERY } from '@md-queries/starships';
 import { Starship } from '@md-shared/types/starship';
 import { ClientError } from '@md-utils/errors/custom';
 import { GetStarshipsResponse, GetStarshipsVariables, Starships } from '@md-queries/starships/types';
+import loadCustomRoutes from 'next/dist/lib/load-custom-routes';
 
 type StarshipItem = Pick<Starship, 'id' | 'name'> & { image: string };
 
@@ -17,16 +18,18 @@ interface Context {
   starships: StarshipItem[];
   error?: ClientError<string>;
   refetch: (variables?: GetStarshipsVariables) => Promise<ClientError<string> | Starships>;
+  loadMore: () => StarshipItem[];
 }
 
 const StarshipsAPIContext = React.createContext<Context>({
   starships: [],
   isLoading: false,
-  refetch: () => Promise.resolve([] as Starships)
+  refetch: () => Promise.resolve([] as Starships),
+  loadMore: () => []
 });
 
 const StarshipsAPIContextProvider: React.FC = ({ children }) => {
-  const { data, loading, refetch, error } = useQuery<GetStarshipsResponse, GetStarshipsVariables>(GET_STARSHIPS_QUERY, {
+  const { data, loading, refetch, error, fetchMore } = useQuery<GetStarshipsResponse, GetStarshipsVariables>(GET_STARSHIPS_QUERY, {
     variables: { first: 5 }
   });
 
@@ -50,11 +53,32 @@ const StarshipsAPIContextProvider: React.FC = ({ children }) => {
     [data?.allStarships.starships]
   );
 
+  const loadMore = () => {
+    const {endCursor} = data?.allStarships.pageInfo;
+    console.log(endCursor)
+
+    fetchMore({
+      variables: { first: 3, after: endCursor},
+      updateQuery: (prevReasult, {fetchMoreResult}) => {
+        console.log(prevReasult.allStarships.starships);
+        console.log(fetchMoreResult.allStarships.starships)
+        fetchMoreResult.allStarships.starships = [
+          ...prevReasult.allStarships.starships,
+          ...fetchMoreResult.allStarships.starships
+        ];
+        console.log(fetchMoreResult.allStarships.starships)
+        
+        return fetchMoreResult;
+      }
+    }) 
+  }
+
   const value = {
     starships,
     isLoading: loading,
     refetch: refetchStarships,
-    error: error ? U.errors.parseAndCreateClientError(error) : undefined
+    error: error ? U.errors.parseAndCreateClientError(error) : undefined,
+    loadMore: () => loadMore
   };
 
   return <StarshipsAPIContext.Provider value={value}>{children}</StarshipsAPIContext.Provider>;

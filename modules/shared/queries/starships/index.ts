@@ -7,6 +7,11 @@ export const GET_STARSHIPS_QUERY = gql`
       starships {
         id
         name
+        model
+        starshipClass
+      }
+      pageInfo {
+        endCursor
       }
     }
   }
