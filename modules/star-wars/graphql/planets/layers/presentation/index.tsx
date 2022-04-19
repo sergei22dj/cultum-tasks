@@ -21,8 +21,8 @@ const PlanetsPresentation = () => {
 
       <ContentLoader isLoading={isLoading} error={error}>
         <Wrapper>
-          {planets.map((person) => (
-            <Card key={person.id} href='/graphql/planets/[id]' as={`/graphql/planets/${person.id}`} {...person} />
+          {planets.map((planet) => (
+            <Card key={planet.id} href='/graphql/planets/[id]' as={`/graphql/planets/${planet.id}`} {...planet} />
           ))}
         </Wrapper>
       </ContentLoader>

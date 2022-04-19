@@ -6,12 +6,10 @@ import { ContentLoader } from '@md-ui/loaders/content-loader';
 import { StarshipsAPIContext } from '@md-sw-starships/layers/api/starships';
 // views
 import { ContentWrapper, Wrapper, Description, Title } from '@md-shared/views/common';
-import { useQuery } from '@apollo/client';
-import { GET_STARSHIPS_QUERY } from '@md-modules/shared/queries/starships';
 
 const StarshipsPresentation = () => {
-  const { isLoading, error, starships, loadMore, refetch  } = React.useContext(StarshipsAPIContext);
- 
+  const { isLoading, error, starships, loadMore } = React.useContext(StarshipsAPIContext);
+
   return (
     <ContentWrapper>
       <Title>SSG (Static-side Generation)</Title>
@@ -37,17 +35,16 @@ const StarshipsPresentation = () => {
       <ContentLoader isLoading={isLoading} error={error}>
         <Wrapper>
           {starships.map((starship) => (
-            <><Card
+              <Card
               key={starship.id}
               href='/graphql/starships/[id]'
               as={`/graphql/starships/${starship.id}`}
               {...starship} />
               
-              </>
           ))}
         </Wrapper>
       </ContentLoader>
-      <button onClick={refetch}>ЕЩЕ!!!</button>
+      <button onClick={loadMore}>ЕЩЕ!!!</button>
     </ContentWrapper>
   );
 };
