@@ -7,8 +7,9 @@ export interface GetStarshipsResponse {
   allStarships: {
     totalCount: number;
     starships: Starships;
-    pageInfo: string;
-    endCursor: string;
+    pageInfo: {
+      endCursor: string;
+    }
   };
 }
 

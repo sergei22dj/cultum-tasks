@@ -18,14 +18,14 @@ interface Context {
   starships: StarshipItem[];
   error?: ClientError<string>;
   refetch: (variables?: GetStarshipsVariables) => Promise<ClientError<string> | Starships>;
-  loadMore: () => GetStarshipsResponse[];
+  loadMore?: () => Promise<ClientError<string> | Starships>;
 }
 
 const StarshipsAPIContext = React.createContext<Context>({
   starships: [],
   isLoading: false,
   refetch: () => Promise.resolve([] as Starships),
-  loadMore: () => [],
+  loadMore: () => Promise.resolve([] as Starships)
 });
 
 const StarshipsAPIContextProvider: React.FC = ({ children }) => {
@@ -53,22 +53,26 @@ const StarshipsAPIContextProvider: React.FC = ({ children }) => {
     [data?.allStarships.starships]
   );
 
-  const loadMore = () => {
+  const loadMore = async () => {
     try {
-      const {endCursor} = data?.allStarships.pageInfo;
-    console.log(endCursor)
+      const endCursor = data?.allStarships.pageInfo.endCursor;
+      console.log(endCursor)
 
-    fetchMore({
+    const result = await fetchMore({
       variables: { first: 3, after: endCursor},
-      updateQuery: (prevResult: any, {fetchMoreResult}) => {
+      updateQuery: (prevResult: any, {fetchMoreResult}: any) => {
+        loading;
         fetchMoreResult.allStarships.starships = [
           ...prevResult.allStarships.starships,
           ...fetchMoreResult.allStarships.starships
         ];
-        console.log(fetchMoreResult)
+
         return fetchMoreResult;
       }
       })
+
+
+      return result.data ? result.data.allStarships.starships : [];
     }catch(error: any){
       return U.errors.parseAndCreateClientError(error);
     }

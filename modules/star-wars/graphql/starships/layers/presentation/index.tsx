@@ -6,10 +6,11 @@ import { ContentLoader } from '@md-ui/loaders/content-loader';
 import { StarshipsAPIContext } from '@md-sw-starships/layers/api/starships';
 // views
 import { ContentWrapper, Wrapper, Description, Title } from '@md-shared/views/common';
+import { Loader } from '@md-modules/shared/components/ui/loaders/loader';
 
 const StarshipsPresentation = () => {
   const { isLoading, error, starships, loadMore } = React.useContext(StarshipsAPIContext);
-
+console.log(isLoading)
   return (
     <ContentWrapper>
       <Title>SSG (Static-side Generation)</Title>
@@ -32,18 +33,20 @@ const StarshipsPresentation = () => {
         </ul>
       </Description>
 
-      <ContentLoader isLoading={isLoading} error={error}>
+      
         <Wrapper>
-          {starships.map((starship) => (
-              <Card
+        <ContentLoader error={error} isLoading={isLoading}>
+          {starships.map((starship) => ( 
+                <Card
               key={starship.id}
               href='/graphql/starships/[id]'
               as={`/graphql/starships/${starship.id}`}
               {...starship} />
               
           ))}
+          </ContentLoader>
         </Wrapper>
-      </ContentLoader>
+      
       <button onClick={loadMore}>ЕЩЕ!!!</button>
     </ContentWrapper>
   );
