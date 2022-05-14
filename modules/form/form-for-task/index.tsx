@@ -6,11 +6,8 @@ import { ButtonWrapper, FormWrapper } from '../views';
 import { Input, InputTitle, ITdescription } from './views';
 import { useInput } from './custom-hooks';
 
-
-
-
 const FormAuth = () => {
- 
+
   const firstname = useInput('', {isEmpty: true, minLength: 5, maxLength: 50})
   const lastname = useInput('', {isEmpty: true, minLength: 5, maxLength: 50})
   const email = useInput('', {isEmpty: true, isEmail: false})
@@ -26,6 +23,7 @@ const FormAuth = () => {
     your password is (${password.value})`
     )
   }
+
 
     return (
         <ContentWrapper>
@@ -56,7 +54,7 @@ const FormAuth = () => {
             <InputTitle>Password</InputTitle>
             {(password.isdirty && password.isempty) && <ITdescription>(min one character)</ITdescription>}
             {(password.isdirty && password.oneUpLetter) && <ITdescription>(min one upper letter)</ITdescription>}
-            <Input onChange={e => password.onChange(e)} onBlur={e => password.onBlur(e)} value={password.value} />
+            <Input type='password' onChange={e => password.onChange(e)} onBlur={e => password.onBlur(e)} value={password.value} />
 
             <ButtonWrapper>
               <Button type='button' onClick={consoleLog}>

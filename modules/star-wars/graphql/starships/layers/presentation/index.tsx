@@ -33,9 +33,9 @@ console.log(isLoading)
         </ul>
       </Description>
 
-      
+      <ContentLoader error={error} isLoading={isLoading}>
         <Wrapper>
-        <ContentLoader error={error} isLoading={isLoading}>
+          
           {starships.map((starship) => ( 
                 <Card
               key={starship.id}
@@ -44,9 +44,9 @@ console.log(isLoading)
               {...starship} />
               
           ))}
-          </ContentLoader>
+          
         </Wrapper>
-      
+      </ContentLoader>
       <button onClick={loadMore}>ЕЩЕ!!!</button>
     </ContentWrapper>
   );

@@ -61,7 +61,6 @@ const StarshipsAPIContextProvider: React.FC = ({ children }) => {
     const result = await fetchMore({
       variables: { first: 3, after: endCursor},
       updateQuery: (prevResult: any, {fetchMoreResult}: any) => {
-        loading;
         fetchMoreResult.allStarships.starships = [
           ...prevResult.allStarships.starships,
           ...fetchMoreResult.allStarships.starships

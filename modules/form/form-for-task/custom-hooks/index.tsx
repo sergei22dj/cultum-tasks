@@ -23,10 +23,10 @@ export const useValidation = (value: string, validations: Validations) => {
     for (const validation in validations) {
       switch(validation) {
         case 'minLength':
-            value.length < validations[validation]! ? setMinLengthError(true) : setMinLengthError(false)
+           setMinLengthError(value.length < validations[validation]!)
         break;
         case 'maxLength': 
-            value.length > validations[validation]! ? setMaxLengthError(true) : setMaxLengthError(false)
+           setMaxLengthError(value.length > validations[validation]!)
         break;
 
         case 'isEmpty' :
